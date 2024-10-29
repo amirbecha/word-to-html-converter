@@ -13,9 +13,8 @@ function convertToHTML() {
 
         mammoth.convertToHtml({ arrayBuffer: arrayBuffer })
             .then(function(result) {
-                // Escape HTML to show the actual code
-                const htmlOutput = result.value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-                outputDiv.innerHTML = `<h3>Converted HTML:</h3><pre>${htmlOutput}</pre>`;
+                // Display the HTML code directly
+                outputDiv.innerHTML = `<h3>Converted HTML Code:</h3><textarea rows="20" cols="80">${result.value}</textarea>`;
             })
             .catch(function(err) {
                 outputDiv.innerHTML = `<p>Error: ${err.message}</p>`;
