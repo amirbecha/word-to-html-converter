@@ -25,9 +25,15 @@ function formatHTML(html) {
     const descriptionMatch = html.match(/<td>\s*<p>\s*<strong>\s*Description:\s*<\/strong>\s*(.*?)<\/p>\s*<\/td>\s*<td colspan="3">\s*<p>\s*(.*?)<\/p>\s*<\/td>/);
     const description = descriptionMatch ? descriptionMatch[2].trim() : "No description available.";
 
-    // Extract keywords from the table, allowing for variations in the structure
-    const keywordsMatch = html.match(/<td>\s*<p>\s*<strong>\s*Keywords:\s*<\/strong>.*?<\/p>\s*<\/td>\s*<td colspan="3">\s*<p>\s*(.*?)<\/p>\s*<\/td>/);
+    // Enhanced extraction of keywords from the table
+    const keywordsMatch = html.match(/<td>\s*<p>\s*<strong>\s*Keywords:\s*<\/strong>.*?<\/p>\s*<\/td>\s*<td colspan="3">\s*<p>\s*(.*?)<\/p>\s*<\/td>/s);
     let keywords = keywordsMatch ? keywordsMatch[1].trim() : "No keywords available.";
+
+    // If keywords are not found in the above structure, try alternative matches
+    if (keywords === "No keywords available.") {
+        const alternativeKeywordsMatch = html.match(/<strong>\s*Keywords:\s*<\/strong>\s*<\/p>\s*<\/td>\s*<td colspan="3">\s*<p>\s*(.*?)<\/p>\s*<\/td>/s);
+        keywords = alternativeKeywordsMatch ? alternativeKeywordsMatch[1].trim() : "No keywords available.";
+    }
 
     // Replace semicolons with commas in keywords
     keywords = keywords.replace(/;\s*/g, ',');
