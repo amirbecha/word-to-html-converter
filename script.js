@@ -82,7 +82,9 @@ function addLineNumbers(html) {
 
 function copyToClipboard() {
     const textarea = document.getElementById("htmlCode");
+    textarea.style.display = "block"; // Make textarea visible to select text
     textarea.select(); // Select the text in the textarea
     document.execCommand("copy"); // Copy the selected text to the clipboard
+    textarea.style.display = "none"; // Hide textarea again
     alert("HTML code copied to clipboard!"); // Notify the user
 }
