@@ -55,10 +55,11 @@ function addLineNumbers(html) {
     codeDisplay.innerHTML = ''; // Clear previous output
     const lineNumbersDiv = document.createElement("div");
     const codeDiv = document.createElement("div");
+    lineNumbersDiv.className = "line-numbers";
+    codeDiv.className = "code";
 
     lines.forEach((line, index) => {
         const lineNumber = document.createElement("span");
-        lineNumber.className = "line-numbers";
         lineNumber.textContent = index + 1; // Line number
 
         const codeLine = document.createElement("span");
@@ -66,6 +67,7 @@ function addLineNumbers(html) {
 
         lineNumbersDiv.appendChild(lineNumber);
         codeDiv.appendChild(codeLine);
+        codeDiv.appendChild(document.createElement("br")); // Add line breaks for proper formatting
     });
 
     codeDisplay.appendChild(lineNumbersDiv);
