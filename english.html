@@ -40,6 +40,25 @@
             background-color: #2980b9; /* Darker blue on hover */
             transform: scale(1.05); /* Slightly enlarge button on hover */
         }
+        .code-container {
+            display: flex; /* Use flexbox to align line numbers and code */
+            white-space: pre; /* Maintain whitespace */
+            font-family: monospace; /* Use a monospaced font for code */
+        }
+        .line-numbers {
+            display: inline-block;
+            width: 40px; /* Fixed width for line numbers */
+            padding-right: 10px; /* Space between line numbers and code */
+            text-align: right; /* Right align numbers */
+            color: #888; /* Light color for line numbers */
+            user-select: none; /* Prevent selection of line numbers */
+            border-right: 1px solid #ddd; /* Optional: border between numbers and code */
+        }
+        .code { /* Code styles */
+            flex-grow: 1; /* Take up the remaining space */
+            padding-left: 10px; /* Space between numbers and code */
+            overflow-x: auto; /* Enable horizontal scrolling */
+        }
     </style>
 </head>
 <body>
