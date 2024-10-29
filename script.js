@@ -53,30 +53,4 @@ function addLineNumbers(html) {
     const codeDisplay = document.getElementById("codeDisplay");
 
     codeDisplay.innerHTML = ''; // Clear previous output
-    const lineNumbersDiv = document.createElement("div");
-    const codeDiv = document.createElement("div");
-    lineNumbersDiv.className = "line-numbers";
-    codeDiv.className = "code";
-
-    lines.forEach((line, index) => {
-        const lineNumber = document.createElement("span");
-        lineNumber.textContent = index + 1; // Line number
-
-        const codeLine = document.createElement("span");
-        codeLine.textContent = line; // Code line
-
-        lineNumbersDiv.appendChild(lineNumber);
-        codeDiv.appendChild(codeLine);
-        codeDiv.appendChild(document.createElement("br")); // Add line breaks for proper formatting
-    });
-
-    codeDisplay.appendChild(lineNumbersDiv);
-    codeDisplay.appendChild(codeDiv);
-}
-
-function copyToClipboard() {
-    const textarea = document.getElementById("htmlCode");
-    textarea.select(); // Select the text in the textarea
-    document.execCommand("copy"); // Copy the selected text to the clipboard
-    alert("HTML code copied to clipboard!"); // Notify the user
-}
+    const lineNu
