@@ -25,12 +25,21 @@ function convertToHTML() {
 }
 
 function formatHTML(html) {
-    const formatted = html
-        .replace(/></g, ">\n<")   // Add a newline between tags
-        .replace(/^\s+|\s+$/g, "") // Trim spaces at the start and end
-        .replace(/(<[^\/>]+>)(?=[^<])/g, "$1\n") // Newline after opening tags without closing slash
-        .replace(/(<\/[^>]+>)/g, "\n$1") // Newline before closing tags
-        .replace(/\n\s*\n/g, "\n") // Remove extra empty lines
-        .replace(/>\n\s*</g, ">\n    <"); // Indent nested tags
-    return formatted;
+    const indentSize = 4; // Number of spaces for indentation
+    let formatted = '';
+    let indentLevel = 0;
+
+    html.split(/(?=<)|(?<=>)/g).forEach((part) => {
+        if (part.match(/<[^/!][^>]*>/)) { // Opening tag
+            formatted += ' '.repeat(indentLevel * indentSize) + part.trim() + '\n';
+            indentLevel++;
+        } else if (part.match(/<\/[^>]+>/)) { // Closing tag
+            indentLevel--;
+            formatted += ' '.repeat(indentLevel * indentSize) + part.trim() + '\n';
+        } else { // Text node
+            formatted += ' '.repeat(indentLevel * indentSize) + part.trim() + '\n';
+        }
+    });
+
+    return formatted.trim(); // Remove any leading/trailing whitespace
 }
