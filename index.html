@@ -7,10 +7,21 @@
     <style>
         body { font-family: Arial, sans-serif; max-width: 800px; margin: 20px auto; }
         .container { text-align: center; }
-        #output { margin-top: 20px; padding: 10px; border: 1px solid #ddd; background-color: #f9f9f9; display: flex; }
-        #lineNumbers { padding: 10px; background-color: #f0f0f0; border-right: 1px solid #ddd; text-align: right; user-select: none; }
-        textarea { width: 100%; resize: none; }
+        #output { margin-top: 20px; padding: 10px; border: 1px solid #ddd; background-color: #f9f9f9; }
+        pre { overflow: auto; padding: 10px; background-color: #f0f0f0; border: 1px solid #ddd; }
         button { margin-top: 10px; }
+        .line-numbers {
+            display: inline-block;
+            width: 40px;
+            padding-right: 10px;
+            text-align: right;
+            color: #888;
+            user-select: none; /* Prevent selection of line numbers */
+        }
+        .code-container {
+            display: flex;
+            white-space: pre; /* Maintain whitespace */
+        }
     </style>
 </head>
 <body>
