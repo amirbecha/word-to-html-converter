@@ -56,6 +56,10 @@ function formatHTML(html) {
     const descriptionMatch = html.match(/<td>\s*<p>\s*<strong>\s*Description:\s*<\/strong>\s*(.*?)<\/p>\s*<\/td>\s*<td colspan="3">\s*<p>\s*(.*?)<\/p>\s*<\/td>/);
     const description = descriptionMatch ? descriptionMatch[2].trim() : "No description available.";
 
+    // Extract highlighted topics (you need to define how to identify these in your document)
+    const subjectMatch = html.match(/<td>\s*<p>\s*<strong>\s*Highlighted Topics:\s*<\/strong>\s*(.*?)<\/p>\s*<\/td>\s*<td colspan="3">\s*<p>\s*(.*?)<\/p>\s*<\/td>/);
+    const subject = subjectMatch ? subjectMatch[2].trim() : "No subjects identified.";
+
     // Add the HTML structure at the beginning
     formatted += `<!DOCTYPE html>
 <!--[if lt IE 9]><html class="no-js lt-ie9" lang="en" dir="ltr"><![endif]-->
@@ -75,6 +79,8 @@ function formatHTML(html) {
 <meta name="dcterms.title" content="${title}" /> 
 <meta name="dcterms.issued" title="W3CDTF" content="${currentDate}" /> 
 <meta name="dcterms.modified" title="W3CDTF" content="<!--#config timefmt='%Y-%m-%d'--><!--#echo var='LAST_MODIFIED'-->" />
+<meta name="dcterms.subject" title="gccore" content="${subject}" /> 
+<meta name="dcterms.language" title="ISO639-2" content="eng" />
 <!-- End of Metadata -->\n`;
 
     // Split and format the remaining HTML
