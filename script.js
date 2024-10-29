@@ -49,6 +49,10 @@ function formatHTML(html) {
     const titleMatch = html.match(/<h1 property="name" id="wb-cont">(.*?)<\/h1>/);
     const title = titleMatch ? titleMatch[1] : "Document Title";
 
+    // Extract the description from the table
+    const descriptionMatch = html.match(/<td>\s*<p>\s*<strong>\s*Description:\s*<\/strong>\s*(.*?)\s*<\/p>\s*<\/td>/);
+    const description = descriptionMatch ? descriptionMatch[1].trim() : "No description available";
+
     // Add the HTML structure at the beginning
     formatted += `<!DOCTYPE html>
 <!--[if lt IE 9]><html class="no-js lt-ie9" lang="en" dir="ltr"><![endif]-->
@@ -58,7 +62,13 @@ function formatHTML(html) {
 <!--#include virtual="/includes/aa/AA_header.html" -->
 <meta charset="utf-8"/>
 <!-- Start of Title -->
-<title>${title} - GCIntranet - PSPC</title>\n`;
+<title>${title} - GCIntranet - PSPC</title>
+<!-- End of Title --> 
+<!-- Start of Metadata -->
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta name="${description}" /> 
+<meta name="dcterms.description" content="${description}" />
+<!-- End of Metadata -->\n`;
 
     // Split and format the remaining HTML
     html.split(/(?=<)|(?<=>)/g).forEach((part) => {
