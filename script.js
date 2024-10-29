@@ -13,7 +13,6 @@ function convertToHTML() {
 
         mammoth.convertToHtml({ arrayBuffer: arrayBuffer })
             .then(function(result) {
-                // Format the HTML output
                 const formattedHTML = formatHTML(result.value);
                 outputDiv.innerHTML = `<h3>Converted HTML Code:</h3>
                                        <div class="code-container" id="codeDisplay"></div>
@@ -25,6 +24,7 @@ function convertToHTML() {
                 outputDiv.innerHTML = `<p>Error: ${err.message}</p>`;
             });
     };
+
     reader.readAsArrayBuffer(fileInput.files[0]);
 }
 
@@ -53,4 +53,29 @@ function addLineNumbers(html) {
     const codeDisplay = document.getElementById("codeDisplay");
 
     codeDisplay.innerHTML = ''; // Clear previous output
-    const lineNu
+    const lineNumbersDiv = document.createElement("div");
+    const codeDiv = document.createElement("div");
+    lineNumbersDiv.className = "line-numbers";
+    codeDiv.className = "code";
+
+    lines.forEach((line, index) => {
+        const lineNumber = document.createElement("div"); // Use div for line numbers
+        lineNumber.textContent = index + 1; // Line number
+
+        const codeLine = document.createElement("div"); // Use div for code lines
+        codeLine.textContent = line; // Code line
+
+        lineNumbersDiv.appendChild(lineNumber);
+        codeDiv.appendChild(codeLine);
+    });
+
+    codeDisplay.appendChild(lineNumbersDiv);
+    codeDisplay.appendChild(codeDiv);
+}
+
+function copyToClipboard() {
+    const textarea = document.getElementById("htmlCode");
+    textarea.select(); // Select the text in the textarea
+    document.execCommand("copy"); // Copy the selected text to the clipboard
+    alert("HTML code copied to clipboard!"); // Notify the user
+}
