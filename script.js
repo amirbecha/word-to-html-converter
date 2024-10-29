@@ -14,11 +14,11 @@ function convertToHTML() {
             .then(function(result) {
                 console.log("Conversion successful."); // Log when conversion is successful
                 const formattedHTML = formatHTML(result.value);
-                outputDiv.innerHTML = <h3>Converted HTML Code:</h3> <div class="code-container" id="codeDisplay"></div> <textarea id="htmlCode" style="display: none;">${formattedHTML}</textarea> <button onclick="copyToClipboard()">Copy Code</button>;
+                outputDiv.innerHTML = `<h3>Converted HTML Code:</h3> <div class="code-container" id="codeDisplay"></div> <textarea id="htmlCode" style="display: none;">${formattedHTML}</textarea> <button onclick="copyToClipboard()">Copy Code</button>`;
                 addLineNumbers(formattedHTML);
             })
             .catch(function(err) {
-                outputDiv.innerHTML = <p>Error: ${err.message}</p>;
+                outputDiv.innerHTML = `<p>Error: ${err.message}</p>`;
                 console.error(err); // Log the error
             });
     };
@@ -38,7 +38,7 @@ function formatHTML(html) {
 
     // Replace <h1> tags to add properties
     html = html.replace(/<h1>(.*?)<\/h1>/g, (match, p1) => {
-        return <h1 property="name" id="wb-cont">${p1}</h1>;
+        return `<h1 property="name" id="wb-cont">${p1}</h1>`;
     });
 
     // Get the first h1 content for the title
@@ -63,7 +63,7 @@ function formatHTML(html) {
     keywords = keywords.replace(/[, ]+$/, '');
 
     // Add the HTML structure at the beginning
-    formatted += <!DOCTYPE html>
+    formatted += `<!DOCTYPE html>
 <!--[if lt IE 9]><html class="no-js lt-ie9" lang="en" dir="ltr"><![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang="en" dir="ltr">
@@ -121,7 +121,7 @@ function formatHTML(html) {
   </div>
 </nav>
 <main role="main" property="mainContentOfPage" class="container"> 
-  <!-- Start of Main Content -->\n;
+  <!-- Start of Main Content -->\n`;
 
     // Split and format the remaining HTML
     html.split(/(?=<)|(?<=>)/g).forEach((part) => {
@@ -137,7 +137,7 @@ function formatHTML(html) {
     });
 
     // Add the specified footer content after the main content
-    formatted += <!-- End of Main Content -->
+    formatted += `<!-- End of Main Content -->
   <div class="row pagedetails">
     <div class="col-sm-5 col-xs-12 datemod">
       <dl id="wb-dtmd">
@@ -158,7 +158,7 @@ function formatHTML(html) {
 <!--#include virtual="/site/wet4.0/html5/includes/script-pied_site-site_footer.html" --> 
 <!--#include virtual="/includes/aa/AA_footer.html" -->
 </body>
-</html>;
+</html>`;
 
     return formatted.trim(); // Remove any leading/trailing whitespace
 }
