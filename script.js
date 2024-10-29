@@ -1,4 +1,5 @@
 function convertToHTML() {
+    console.log("Convert button clicked."); // Log when button is clicked
     const fileInput = document.getElementById("upload");
     const outputDiv = document.getElementById("output");
 
@@ -9,10 +10,12 @@ function convertToHTML() {
 
     const reader = new FileReader();
     reader.onload = function(event) {
+        console.log("File loaded."); // Log when file is loaded
         const arrayBuffer = event.target.result;
 
         mammoth.convertToHtml({ arrayBuffer: arrayBuffer })
             .then(function(result) {
+                console.log("Conversion successful."); // Log when conversion is successful
                 const formattedHTML = formatHTML(result.value);
                 outputDiv.innerHTML = `<h3>Converted HTML Code:</h3>
                                        <div class="code-container" id="codeDisplay"></div>
@@ -22,6 +25,7 @@ function convertToHTML() {
             })
             .catch(function(err) {
                 outputDiv.innerHTML = `<p>Error: ${err.message}</p>`;
+                console.error(err); // Log the error
             });
     };
 
@@ -32,6 +36,9 @@ function formatHTML(html) {
     const indentSize = 4; // Number of spaces for indentation
     let formatted = '';
     let indentLevel = 0;
+
+    // Remove <a id="_Toc...."></a> tags
+    html = html.replace(/<a id="[^"]*"><\/a>/g, '');
 
     html.split(/(?=<)|(?<=>)/g).forEach((part) => {
         if (part.match(/<[^/!][^>]*>/)) { // Opening tag
