@@ -70,7 +70,13 @@ function addLineNumbers(html) {
         lineNumber.textContent = index + 1; // Line number
 
         const codeLine = document.createElement("div"); // Use div for code lines
-        codeLine.textContent = line; // Code line
+        
+        // Check if the line is an <h1> tag and add the properties
+        if (line.includes("<h1")) {
+            codeLine.innerHTML = line.replace("<h1", '<h1 property="name" id="wb-cont"');
+        } else {
+            codeLine.textContent = line; // Code line
+        }
 
         lineNumbersDiv.appendChild(lineNumber);
         codeDiv.appendChild(codeLine);
