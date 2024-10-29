@@ -56,6 +56,9 @@ function formatHTML(html) {
     // Replace semicolons with commas in keywords
     keywords = keywords.replace(/;\s*/g, ', ');
 
+    // Remove trailing commas or spaces
+    keywords = keywords.replace(/[, ]+$/, '');
+
     // Add the HTML structure at the beginning
     formatted += `<!DOCTYPE html>
 <!--[if lt IE 9]><html class="no-js lt-ie9" lang="en" dir="ltr"><![endif]-->
