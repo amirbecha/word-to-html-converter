@@ -51,7 +51,7 @@ function formatHTML(html) {
 
     // Extract description from the table
     const descriptionMatch = html.match(/<td>\s*<p>\s*<strong>\s*Description:\s*<\/strong>\s*(.*?)<\/p>\s*<\/td>\s*<td colspan="3">\s*<p>\s*(.*?)<\/p>\s*<\/td>/);
-    const description = descriptionMatch ? descriptionMatch[2].trim() : "No description available.";
+    const description = descriptionMatch ? descriptionMatch[2].trim() : "";
 
     // Add the HTML structure at the beginning
     formatted += `<!DOCTYPE html>
