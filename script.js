@@ -40,6 +40,9 @@ function formatHTML(html) {
     // Remove <a id="_Toc...."></a> tags
     html = html.replace(/<a id="[^"]*"><\/a>/g, '');
 
+    // Replace <h1> tags to add properties
+    html = html.replace(/<h1>(.*?)<\/h1>/g, '<h1 property="name" id="wb-cont">$1</h1>');
+
     html.split(/(?=<)|(?<=>)/g).forEach((part) => {
         if (part.match(/<[^/!][^>]*>/)) { // Opening tag
             formatted += ' '.repeat(indentLevel * indentSize) + part.trim() + '\n';
@@ -70,13 +73,7 @@ function addLineNumbers(html) {
         lineNumber.textContent = index + 1; // Line number
 
         const codeLine = document.createElement("div"); // Use div for code lines
-        
-        // Check if the line is an <h1> tag and add the properties
-        if (line.includes("<h1")) {
-            codeLine.innerHTML = line.replace("<h1", '<h1 property="name" id="wb-cont"');
-        } else {
-            codeLine.textContent = line; // Code line
-        }
+        codeLine.textContent = line; // Code line
 
         lineNumbersDiv.appendChild(lineNumber);
         codeDiv.appendChild(codeLine);
