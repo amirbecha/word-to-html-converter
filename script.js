@@ -15,10 +15,11 @@ function convertToHTML() {
             .then(function(result) {
                 // Format the HTML output
                 const formattedHTML = formatHTML(result.value);
-                const lineCount = formattedHTML.split('\n').length;
-                outputDiv.innerHTML = `<div id="lineNumbers">${generateLineNumbers(lineCount)}</div>
-                                       <textarea id="htmlCode" rows="20" cols="80" readonly>${formattedHTML}</textarea>
+                outputDiv.innerHTML = `<h3>Converted HTML Code:</h3>
+                                       <div class="code-container" id="codeDisplay"></div>
+                                       <textarea id="htmlCode" style="display: none;">${formattedHTML}</textarea>
                                        <button onclick="copyToClipboard()">Copy Code</button>`;
+                addLineNumbers(formattedHTML);
             })
             .catch(function(err) {
                 outputDiv.innerHTML = `<p>Error: ${err.message}</p>`;
@@ -47,12 +48,28 @@ function formatHTML(html) {
     return formatted.trim(); // Remove any leading/trailing whitespace
 }
 
-function generateLineNumbers(count) {
-    let lines = '';
-    for (let i = 1; i <= count; i++) {
-        lines += i + '\n';
-    }
-    return lines;
+function addLineNumbers(html) {
+    const lines = html.split('\n');
+    const codeDisplay = document.getElementById("codeDisplay");
+
+    codeDisplay.innerHTML = ''; // Clear previous output
+    const lineNumbersDiv = document.createElement("div");
+    const codeDiv = document.createElement("div");
+
+    lines.forEach((line, index) => {
+        const lineNumber = document.createElement("span");
+        lineNumber.className = "line-numbers";
+        lineNumber.textContent = index + 1; // Line number
+
+        const codeLine = document.createElement("span");
+        codeLine.textContent = line; // Code line
+
+        lineNumbersDiv.appendChild(lineNumber);
+        codeDiv.appendChild(codeLine);
+    });
+
+    codeDisplay.appendChild(lineNumbersDiv);
+    codeDisplay.appendChild(codeDiv);
 }
 
 function copyToClipboard() {
