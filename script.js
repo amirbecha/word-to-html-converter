@@ -25,15 +25,9 @@ function formatHTML(html) {
     const descriptionMatch = html.match(/<td>\s*<p>\s*<strong>\s*Description:\s*<\/strong>\s*(.*?)<\/p>\s*<\/td>\s*<td colspan="3">\s*<p>\s*(.*?)<\/p>\s*<\/td>/);
     const description = descriptionMatch ? descriptionMatch[2].trim() : "No description available.";
 
-    // Enhanced extraction of keywords from the table
-    const keywordsMatch = html.match(/<td>\s*<p>\s*<strong>\s*Keywords:\s*<\/strong>.*?<\/p>\s*<\/td>\s*<td colspan="3">\s*<p>\s*(.*?)<\/p>\s*<\/td>/s);
+    // Extract keywords from the table
+    const keywordsMatch = html.match(/<strong>\s*Keywords:\s*<\/strong>.*?<\/p>\s*<\/td>\s*<td[^>]*>\s*<p>\s*([\s\S]*?)\s*<\/p>/);
     let keywords = keywordsMatch ? keywordsMatch[1].trim() : "No keywords available.";
-
-    // If keywords are not found in the above structure, try alternative matches
-    if (keywords === "No keywords available.") {
-        const alternativeKeywordsMatch = html.match(/<strong>\s*Keywords:\s*<\/strong>\s*<\/p>\s*<\/td>\s*<td colspan="3">\s*<p>\s*(.*?)<\/p>\s*<\/td>/s);
-        keywords = alternativeKeywordsMatch ? alternativeKeywordsMatch[1].trim() : "No keywords available.";
-    }
 
     // Replace semicolons with commas in keywords
     keywords = keywords.replace(/;\s*/g, ',');
@@ -47,7 +41,7 @@ function formatHTML(html) {
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang="en" dir="ltr">
 <head>
-<!--#include virtual="/includes/aa/AA_header.html" />
+<!--#include virtual="/includes/aa/AA_header.html" -->
 <meta charset="utf-8"/>
 <!-- Start of Title -->
 <title>${title} - GCIntranet - PSPC</title>
@@ -120,20 +114,24 @@ function formatHTML(html) {
   <div class="row pagedetails">
     <div class="col-sm-5 col-xs-12 datemod">
       <dl id="wb-dtmd">
-        <dt>Last updated:</dt>
-        <dd>${currentDate}</dd>
-      </dl>
-    </div>
-    <div class="col-sm-5 col-xs-12 keywords">
-      <dl id="wb-keywords">
-        <dt>Keywords:</dt>
-        <dd>${keywords}</dd>
+        <dt>Date modified:&#32;</dt>
+        <dd>
+          <time property="dateModified"> 
+            <!--#config timefmt='%Y-%m-%d'--> 
+            <!--#echo var='LAST_MODIFIED'--> 
+          </time>
+        </dd>
       </dl>
     </div>
   </div>
-  <!--#include virtual="/includes/aa/AA_footer.html" -->
+</main>
+<!--#include virtual="/site/wet4.0/html5/includes/pied_site-site_footer-eng.html" --> 
+<!--#set var="piwikSiteId" value="308" --> 
+<!--#include virtual="/includes/piwik/piwik.html" --> 
+<!--#include virtual="/site/wet4.0/html5/includes/script-pied_site-site_footer.html" --> 
+<!--#include virtual="/includes/aa/AA_footer.html" -->
 </body>
 </html>`;
 
-    return formatted;
+    return formatted.trim(); // Remove any leading/trailing whitespace
 }
