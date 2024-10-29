@@ -41,8 +41,26 @@ function formatHTML(html) {
     html = html.replace(/<a id="[^"]*"><\/a>/g, '');
 
     // Replace <h1> tags to add properties
-    html = html.replace(/<h1>(.*?)<\/h1>/g, '<h1 property="name" id="wb-cont">$1</h1>');
+    html = html.replace(/<h1>(.*?)<\/h1>/g, (match, p1) => {
+        return `<h1 property="name" id="wb-cont">${p1}</h1>`;
+    });
 
+    // Get the first h1 content for the title
+    const titleMatch = html.match(/<h1 property="name" id="wb-cont">(.*?)<\/h1>/);
+    const title = titleMatch ? titleMatch[1] : "Document Title";
+
+    // Add the HTML structure at the beginning
+    formatted += `<!DOCTYPE html>
+<!--[if lt IE 9]><html class="no-js lt-ie9" lang="en" dir="ltr"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en" dir="ltr">
+<head>
+<!--#include virtual="/includes/aa/AA_header.html" -->
+<meta charset="utf-8"/>
+<!-- Start of Title -->
+<title>${title}</title>\n`;
+
+    // Split and format the remaining HTML
     html.split(/(?=<)|(?<=>)/g).forEach((part) => {
         if (part.match(/<[^/!][^>]*>/)) { // Opening tag
             formatted += ' '.repeat(indentLevel * indentSize) + part.trim() + '\n';
