@@ -56,6 +56,10 @@ function formatHTML(html) {
     const descriptionMatch = html.match(/<td>\s*<p>\s*<strong>\s*Description:\s*<\/strong>\s*(.*?)<\/p>\s*<\/td>\s*<td colspan="3">\s*<p>\s*(.*?)<\/p>\s*<\/td>/);
     const description = descriptionMatch ? descriptionMatch[2].trim() : "No description available.";
 
+    // Extract keywords from the table
+    const keywordsMatch = html.match(/<td>\s*<p>\s*<strong>\s*Keywords:\s*<\/strong>\s*(.*?)<\/p>\s*<\/td>\s*<td colspan="3">\s*<p>\s*(.*?)<\/p>\s*<\/td>/);
+    const keywords = keywordsMatch ? keywordsMatch[2].trim() : "No keywords available.";
+
     // Add the HTML structure at the beginning
     formatted += `<!DOCTYPE html>
 <!--[if lt IE 9]><html class="no-js lt-ie9" lang="en" dir="ltr"><![endif]-->
@@ -77,6 +81,7 @@ function formatHTML(html) {
 <meta name="dcterms.modified" title="W3CDTF" content="<!--#config timefmt='%Y-%m-%d'--><!--#echo var='LAST_MODIFIED'-->" />
 <meta name="dcterms.subject" title="gccore" content="*Insert highlighted topics in the document*" /> 
 <meta name="dcterms.language" title="ISO639-2" content="eng" />
+<meta name="keywords" content="${keywords}" />
 <!-- End of Metadata -->\n`;
 
     // Split and format the remaining HTML
