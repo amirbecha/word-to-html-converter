@@ -15,7 +15,8 @@ function convertToHTML() {
             .then(function(result) {
                 // Format the HTML output
                 const formattedHTML = formatHTML(result.value);
-                outputDiv.innerHTML = `<h3>Converted HTML Code:</h3><textarea rows="20" cols="80">${formattedHTML}</textarea>`;
+                outputDiv.innerHTML = `<h3>Converted HTML Code:</h3><textarea id="htmlCode" rows="20" cols="80">${formattedHTML}</textarea>
+                                       <button onclick="copyToClipboard()">Copy Code</button>`;
             })
             .catch(function(err) {
                 outputDiv.innerHTML = `<p>Error: ${err.message}</p>`;
@@ -42,4 +43,11 @@ function formatHTML(html) {
     });
 
     return formatted.trim(); // Remove any leading/trailing whitespace
+}
+
+function copyToClipboard() {
+    const textarea = document.getElementById("htmlCode");
+    textarea.select(); // Select the text in the textarea
+    document.execCommand("copy"); // Copy the selected text to the clipboard
+    alert("HTML code copied to clipboard!"); // Notify the user
 }
