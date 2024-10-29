@@ -58,7 +58,7 @@ function formatHTML(html) {
 <!--#include virtual="/includes/aa/AA_header.html" -->
 <meta charset="utf-8"/>
 <!-- Start of Title -->
-<title>${title}</title>\n`;
+<title>${title} - GCIntranet - PSPC</title>\n`;
 
     // Split and format the remaining HTML
     html.split(/(?=<)|(?<=>)/g).forEach((part) => {
