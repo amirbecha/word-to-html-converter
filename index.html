@@ -3,24 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page</title>
+    <title>Word to HTML Converter</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 50px;
+            background-color: #f4f4f4; /* Light gray background */
+            color: #333; /* Dark text color */
+        }
+        h1 {
+            color: #2c3e50; /* Dark blue heading */
         }
         button {
             margin: 10px;
             padding: 15px 30px;
             font-size: 16px;
             cursor: pointer;
+            border: none;
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s, transform 0.2s; /* Smooth transition for hover effects */
+        }
+        .btn-english {
+            background-color: #3498db; /* Blue button */
+            color: white;
+        }
+        .btn-french {
+            background-color: #e74c3c; /* Red button */
+            color: white;
+        }
+        button:hover {
+            transform: scale(1.05); /* Slightly enlarge button on hover */
+        }
+        .btn-english:hover {
+            background-color: #2980b9; /* Darker blue on hover */
+        }
+        .btn-french:hover {
+            background-color: #c0392b; /* Darker red on hover */
         }
     </style>
 </head>
 <body>
     <h1>Welcome to the Word to HTML Converter</h1>
-    <button onclick="window.location.href='english.html'">English</button>
-    <button onclick="window.location.href='french.html'">French</button>
+    <button class="btn-english" onclick="window.location.href='english.html'">English</button>
+    <button class="btn-french" onclick="window.location.href='french.html'">French</button>
 </body>
 </html>
