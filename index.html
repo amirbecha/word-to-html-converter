@@ -8,19 +8,25 @@
         body { font-family: Arial, sans-serif; max-width: 800px; margin: 20px auto; }
         .container { text-align: center; }
         #output { margin-top: 20px; padding: 10px; border: 1px solid #ddd; background-color: #f9f9f9; }
-        pre { overflow: auto; padding: 10px; background-color: #f0f0f0; border: 1px solid #ddd; }
         button { margin-top: 10px; }
-        .line-numbers {
-            display: inline-block;
-            width: 40px;
-            padding-right: 10px;
-            text-align: right;
-            color: #888;
-            user-select: none; /* Prevent selection of line numbers */
-        }
         .code-container {
             display: flex;
             white-space: pre; /* Maintain whitespace */
+            font-family: monospace; /* Use a monospaced font for code */
+        }
+        .line-numbers {
+            display: inline-block;
+            width: 40px; /* Fixed width for line numbers */
+            padding-right: 10px; /* Space between line numbers and code */
+            text-align: right; /* Right align numbers */
+            color: #888; /* Light color for line numbers */
+            user-select: none; /* Prevent selection of line numbers */
+            border-right: 1px solid #ddd; /* Optional: border between numbers and code */
+        }
+        .code { /* Code styles */
+            flex-grow: 1; /* Take up the remaining space */
+            padding-left: 10px; /* Space between numbers and code */
+            overflow-x: auto; /* Enable horizontal scrolling */
         }
     </style>
 </head>
