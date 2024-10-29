@@ -15,8 +15,9 @@ function convertToHTML() {
             .then(function(result) {
                 // Format the HTML output
                 const formattedHTML = formatHTML(result.value);
-                outputDiv.innerHTML = `<h3>Converted HTML Code:</h3>
-                                       <textarea id="htmlCode" rows="20" cols="80">${formattedHTML}</textarea>
+                const lineCount = formattedHTML.split('\n').length;
+                outputDiv.innerHTML = `<div id="lineNumbers">${generateLineNumbers(lineCount)}</div>
+                                       <textarea id="htmlCode" rows="20" cols="80" readonly>${formattedHTML}</textarea>
                                        <button onclick="copyToClipboard()">Copy Code</button>`;
             })
             .catch(function(err) {
@@ -44,6 +45,14 @@ function formatHTML(html) {
     });
 
     return formatted.trim(); // Remove any leading/trailing whitespace
+}
+
+function generateLineNumbers(count) {
+    let lines = '';
+    for (let i = 1; i <= count; i++) {
+        lines += i + '\n';
+    }
+    return lines;
 }
 
 function copyToClipboard() {
