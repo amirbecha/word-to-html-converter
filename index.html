@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word to HTML Converter</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 20px auto; }
+        .container { text-align: center; }
+        #output { margin-top: 20px; padding: 10px; border: 1px solid #ddd; background-color: #f9f9f9; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Word to HTML Converter</h1>
+        <input type="file" id="upload" accept=".docx" />
+        <button onclick="convertToHTML()">Convert to HTML</button>
+        <div id="output"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
