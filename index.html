@@ -3,41 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word to HTML Converter</title>
+    <title>Landing Page</title>
     <style>
-        body { font-family: Arial, sans-serif; max-width: 800px; margin: 20px auto; }
-        .container { text-align: center; }
-        #output { margin-top: 20px; padding: 10px; border: 1px solid #ddd; background-color: #f9f9f9; }
-        button { margin-top: 10px; }
-        .code-container {
-            display: flex;
-            white-space: pre; /* Maintain whitespace */
-            font-family: monospace; /* Use a monospaced font for code */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
         }
-        .line-numbers {
-            display: inline-block;
-            width: 40px; /* Fixed width for line numbers */
-            padding-right: 10px; /* Space between line numbers and code */
-            text-align: right; /* Right align numbers */
-            color: #888; /* Light color for line numbers */
-            user-select: none; /* Prevent selection of line numbers */
-            border-right: 1px solid #ddd; /* Optional: border between numbers and code */
-        }
-        .code { /* Code styles */
-            flex-grow: 1; /* Take up the remaining space */
-            padding-left: 10px; /* Space between numbers and code */
-            overflow-x: auto; /* Enable horizontal scrolling */
+        button {
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 16px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Word to HTML Converter</h1>
-        <input type="file" id="upload" accept=".docx" />
-        <button onclick="convertToHTML()">Convert to HTML</button>
-        <div id="output"></div>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
-    <script src="script.js"></script>
+    <h1>Welcome to the Word to HTML Converter</h1>
+    <button onclick="window.location.href='english.html'">English</button>
+    <button onclick="window.location.href='french.html'">French</button>
 </body>
 </html>
