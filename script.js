@@ -49,9 +49,12 @@ function formatHTML(html) {
     const titleMatch = html.match(/<h1 property="name" id="wb-cont">(.*?)<\/h1>/);
     const title = titleMatch ? titleMatch[1] : "Document Title";
 
+    // Get the current date
+    const currentDate = new Date().toISOString().split("T")[0]; // Format YYYY-MM-DD
+
     // Extract description from the table
     const descriptionMatch = html.match(/<td>\s*<p>\s*<strong>\s*Description:\s*<\/strong>\s*(.*?)<\/p>\s*<\/td>\s*<td colspan="3">\s*<p>\s*(.*?)<\/p>\s*<\/td>/);
-    const description = descriptionMatch ? descriptionMatch[2].trim() : "";
+    const description = descriptionMatch ? descriptionMatch[2].trim() : "No description available.";
 
     // Add the HTML structure at the beginning
     formatted += `<!DOCTYPE html>
@@ -68,6 +71,10 @@ function formatHTML(html) {
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta name="${description}" /> 
 <meta name="dcterms.description" content="${description}" />
+<meta name="dcterms.creator" content="Government of Canada, Public Services and Procurement Canada, Public Service Pay Centre" />
+<meta name="dcterms.title" content="${title}" /> 
+<meta name="dcterms.issued" title="W3CDTF" content="${currentDate}" /> 
+<meta name="dcterms.modified" title="W3CDTF" content="<!--#config timefmt='%Y-%m-%d'--><!--#echo var='LAST_MODIFIED'-->" />
 <!-- End of Metadata -->\n`;
 
     // Split and format the remaining HTML
