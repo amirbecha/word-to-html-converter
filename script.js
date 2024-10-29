@@ -33,6 +33,9 @@ function formatHTML(html) {
     // Remove <a id="_Toc...."></a> tags
     html = html.replace(/<a id="[^"]*"><\/a>/g, '');
 
+    // Remove everything from the specified paragraph to the first <h1>
+    html = html.replace(/<p>\s*<strong>\s*Web content submission template\s*<\/strong>\s*<\/p>.*?(?=<h1>)/s, '');
+
     // Replace <h1> tags to add properties
     html = html.replace(/<h1>(.*?)<\/h1>/g, (match, p1) => {
         return `<h1 property="name" id="wb-cont">${p1}</h1>`;
