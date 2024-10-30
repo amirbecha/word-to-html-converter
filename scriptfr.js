@@ -33,6 +33,9 @@ function formatHTML(html) {
     let formatted = '';
     let indentLevel = 0;
 
+    // Remove the section between the specified <p> and the first <h1>
+    html = html.replace(/<p>\s*<strong>\s*Web content submission template\s*<\/strong>\s*<\/p>\s*(.*?)<h1>/s, '<h1>'); // Removing the unwanted section
+
     // Extract keywords using the new function
     const keywords = extractKeywords(html);
     console.log("Extracted Keywords:", keywords); // Debugging line
@@ -70,28 +73,29 @@ function formatHTML(html) {
 
     // Add the HTML structure at the beginning
     formatted += `<!DOCTYPE html>
-    <!--[if lt IE 9]><html class="no-js lt-ie9" lang="en" dir="ltr"><![endif]-->
+    <!--[if lt IE 9]><html class="no-js lt-ie9" lang="fr" dir="ltr"><![endif]-->
     <!--[if gt IE 8]><!-->
-    <html class="no-js" lang="en" dir="ltr">
+    <html class="no-js" lang="fr" dir="ltr">
     <head>
     <!--#include virtual="/includes/aa/AA_header.html" -->
     <meta charset="utf-8"/>
     <!-- Start of Title -->
-    <title>${title} - GCIntranet - PSPC</title>
+    <title>${title} - GCIntranet - SPAC</title>
     <!-- End of Title --> 
     <!-- Start of Metadata -->
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <meta name="description" content="${description}" /> 
     <meta name="dcterms.description" content="${description}" />
-    <meta name="dcterms.creator" content="Government of Canada, Public Services and Procurement Canada, Public Service Pay Centre" />
+    <meta name="dcterms.creator" content="Gouvernement du Canada, Services publics et Approvisionnement Canada" />
     <meta name="dcterms.title" content="${title}" /> 
     <meta name="dcterms.issued" title="W3CDTF" content="${formattedCurrentDate}" /> 
     <meta name="dcterms.modified" title="W3CDTF" content="<!--#config timefmt='%Y-%m-%d'--><!--#echo var='LAST_MODIFIED'-->" />
     <meta name="dcterms.subject" title="gccore" content="*Insert highlighted topics in the document*" /> 
     <meta name="dcterms.language" title="ISO639-2" content="eng" />
     <meta name="keywords" content="${finalKeywords}" />
-    <!--#include virtual="/includes/aa/AA_metadata.html" --> 
+    <!--#include virtual="/includes/aa/AA_metadata.html" -->
     <!-- End of Metadata-->
+    <!-- Start of tete-head.html / D&eacute;but de tete-head.html -->
     <!--#include virtual="/site/wet4.0/html5/includes/tete-head.html" -->
     <!-- Start of Custom CSS -->
     <!-- End of Custom CSS--> 
@@ -104,29 +108,33 @@ function formatHTML(html) {
     </head>
     <body vocab="http://schema.org/" typeof="WebPage">
     <ul id="wb-tphp">
-      <li class="wb-slc"> <a class="wb-sl" href="#wb-cont">Skip to main content</a> </li>
-      <li class="wb-slc visible-sm visible-md visible-lg"> <a class="wb-sl" href="#wb-info">Skip to "About this site"</a> </li>
+      <li class="wb-slc"> <a class="wb-sl" href="#wb-cont">Passer au contenu principal</a></li>
+      <li class="wb-slc visible-sm visible-md visible-lg"> <a class="wb-sl" href="#wb-info">Passer &agrave; &laquo;&#160;&Agrave; propos de ce site&#160;&raquo;</a></li>
     </ul>
-    <!--#include virtual="/site/wet4.0/html5/includes/banner_site-site_banner-eng.html" --> 
-    <!--#include virtual="/site/wet4.0/html5/includes/nav_mega-mega_nav-eng.html" -->
-    <nav role="navigation" id="wb-bc" class="" property="breadcrumb">
-      <h2 class="wb-inv">You are here:</h2>
+    <!-- Start of banner_site-site_banner-fra.html / D&eacute;but de banner_site-site_banner-fra.html --> 
+    <!--#include virtual="/site/wet4.0/html5/includes/banner_site-site_banner-fra.html" --> 
+    <!-- End of banner_site-site_banner-fra.html / Fin de banner_site-site_banner-fra.html --> 
+    <!-- Start of nav_mega-mega_nav-fra.html / D&eacute;but de nav_mega-mega_nav-fra.html --> 
+    <!--#include virtual="/site/wet4.0/html5/includes/nav_mega-mega_nav-fra.html" --> 
+    <!-- End of nav_mega-mega_nav-fra.html / Fin de nav_mega-mega_nav-fra.html -->
+    <nav id="wb-bc" class="" property="breadcrumb">
+      <h2 class="wb-inv">Vous &ecirc;tes ici&nbsp;:</h2>
       <div class="container">
         <div class="row">
           <ol class="breadcrumb">
-            <!-- Start of pain-bread-eng.html (main site and sub-site) / D&eacute;but de pain-bread-eng.html (site principale et sous-site) --> 
-            <!--#include virtual="/site/wet4.0/html5/includes/pain-bread-eng.html" --> 
-            <!-- End of pain-bread-eng.html (main site and sub-site) / Fin de pain-bread-eng.html (site principale et sous-site) -->
-            <li><a href="/remuneration-compensation/index-eng.html">Compensation</a></li>
-            <li><a href="/remuneration-compensation/comm-eng.html">Compensation community hub</a></li>
-            <li><a href="/remuneration-compensation/instructions-eng.html">Pay system instructions and documentation </a></li>
-            <li><a href="/remuneration-compensation/utiliser-use-eng.html">How to use the pay system</a></li>
-            <li><a href="/remuneration-compensation/procedures/recherche-search-eng.html">Phoenix procedures, job aids and instructions</a></li>
+            <!-- Start of pain-bread-fra.html (main site and sub-site) / D&eacute;but de pain-bread-fra.html (site principale et sous-site) --> 
+            <!--#include virtual="/site/wet4.0/html5/includes/pain-bread-fra.html" --> 
+            <!-- End of pain-bread-fra.html (main site and sub-site) / Fin de pain-bread-fra.html (site principale et sous-site) -->
+            <li><a href="/remuneration-compensation/index-fra.html">Rémunération</a></li>
+            <li><a href="/remuneration-compensation/comm-fra.html">Carrefour de la communauté de la rémunération</a></li>
+            <li><a href="/remuneration-compensation/instructions-fra.html">Instructions et documentation sur le système de paye</a></li>
+            <li><a href="/remuneration-compensation/utiliser-use-fra.html">Comment utiliser le système de paye</a></li>
+            <li><a href="/remuneration-compensation/procedures/recherche-search-fra.html">Procédures, outils de travail et instructions de Phénix</a></li>
           </ol>
         </div>
       </div>
     </nav>
-    <main role="main" property="mainContentOfPage" class="container">
+    <main property="mainContentOfPage" class="container">
     <!-- Start of Main Content -->\n`;
 
     // Indentation and formatting of the rest of the HTML
@@ -143,7 +151,25 @@ function formatHTML(html) {
     });
 
     formatted += `<!-- End of Main Content -->
+    <div class="row pagedetails">
+        <div class="col-sm-5 col-xs-12 datemod">
+          <dl id="wb-dtmd">
+            <dt>Date modified:&#32;</dt>
+            <dd>
+              <time property="dateModified"> 
+                <!--#config timefmt='%Y-%m-%d'--> 
+                <!--#echo var='LAST_MODIFIED'--> 
+              </time>
+            </dd>
+          </dl>
+        </div>
+      </div>
     </main>
+    <!--#include virtual="/site/wet4.0/html5/includes/pied_site-site_footer-eng.html" --> 
+    <!--#set var="piwikSiteId" value="308" --> 
+    <!--#include virtual="/includes/piwik/piwik.html" --> 
+    <!--#include virtual="/site/wet4.0/html5/includes/script-pied_site-site_footer.html" --> 
+    <!--#include virtual="/includes/aa/AA_footer.html" -->
     </body>
     </html>`;
     
