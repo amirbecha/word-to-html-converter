@@ -17,12 +17,13 @@
             text-align: center; /* Center align heading */
         }
         #output {
-            height: 600px;
+            max-height: 600px;
             margin-top: 20px;
             padding: 10px;
             border: 1px solid #ddd;
             background-color: #ffffff; /* White background for output */
             border-radius: 5px; /* Rounded corners for output */
+            overflow-y: auto; /* Enable scrolling if content exceeds max height */
         }
         button {
             margin: 10px;
