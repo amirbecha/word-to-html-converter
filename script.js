@@ -12,7 +12,7 @@ function convertToHTML() {
     reader.onload = function(event) {
         console.log("File loaded."); // Log when file is loaded
         const arrayBuffer = event.target.result;
-        
+
         mammoth.convertToHtml({ arrayBuffer: arrayBuffer })
             .then(function(result) {
                 console.log("Conversion successful."); // Log when conversion is successful
@@ -32,6 +32,22 @@ function formatHTML(html) {
     const indentSize = 4; // Number of spaces for indentation
     let formatted = '';
     let indentLevel = 0;
+
+    // Extract keywords from the table first
+    const keywordsMatch = html.match(/<strong>\s*Keywords:\s*<\/strong>\s*<\/td>\s*<td[^>]*>\s*(.*?)\s*<\/td>/);
+    let keywords = "";
+
+    if (keywordsMatch) {
+        // Look for the 'Keywords' label and get the next <td> in the same row
+        const rowMatch = html.match(/<tr[^>]*>.*?<td[^>]*>\s*<strong>\s*Keywords:\s*<\/strong>\s*<\/td>\s*<td[^>]*>(.*?)<\/td>/);
+        if (rowMatch) {
+            keywords = rowMatch[1].trim(); // Get content from the next <td>
+        }
+    }
+
+    // Clean up the keywords
+    keywords = keywords.replace(/;\s*/g, ','); // Replace semicolons with commas
+    keywords = keywords.replace(/[, ]+$/, ''); // Remove trailing commas or spaces
 
     // Remove <a id="_Toc...."></a> tags
     html = html.replace(/<a id="[^"]*"><\/a>/g, '');
@@ -55,22 +71,6 @@ function formatHTML(html) {
     const descriptionMatch = html.match(/<td>\s*<p>\s*<strong>\s*Description:\s*<\/strong>\s*(.*?)<\/p>\s*<\/td>\s*<td colspan="3">\s*<p>\s*(.*?)<\/p>\s*<\/td>/);
     const description = descriptionMatch ? descriptionMatch[2].trim() : "No description available.";
 
-    // Extract keywords from the table
-    const keywordsMatch = html.match(/<strong>\s*Keywords:\s*<\/strong>\s*<\/td>\s*<td[^>]*>\s*(.*?)\s*<\/td>/);
-    let keywords = "";
-
-    if (keywordsMatch) {
-        // Look for the 'Keywords' label and get the next <td> in the same row
-        const rowMatch = html.match(/<tr[^>]*>.*?<td[^>]*>\s*<strong>\s*Keywords:\s*<\/strong>\s*<\/td>\s*<td[^>]*>(.*?)<\/td>/);
-        if (rowMatch) {
-            keywords = rowMatch[1].trim(); // Get content from the next <td>
-        }
-    }
-
-    // Clean up the keywords
-    keywords = keywords.replace(/;\s*/g, ','); // Replace semicolons with commas
-    keywords = keywords.replace(/[, ]+$/, ''); // Remove trailing commas or spaces
-    
     // Add the HTML structure at the beginning
     formatted += `<!DOCTYPE html>
     <!--[if lt IE 9]><html class="no-js lt-ie9" lang="en" dir="ltr"><![endif]-->
