@@ -115,9 +115,41 @@
             padding-left: 10px; /* Space between numbers and code */
             overflow-x: auto; /* Enable horizontal scrolling */
         }
+        .menu-bar {
+        list-style-type: none; /* Remove bullet points */
+        padding: 10px 20px; /* Padding for the menu */
+        margin: 0; /* Remove default margin */
+        background-color: #3498db; /* Menu background color */
+        display: flex; /* Align items in a row */
+        justify-content: space-around; /* Space out the items */
+        }
+        
+        .menu-bar li {
+            display: inline; /* Display items inline */
+        }
+        
+        .menu-bar a {
+            text-decoration: none; /* Remove underline from links */
+            color: white; /* Link text color */
+            padding: 10px; /* Padding around links */
+            transition: background-color 0.3s; /* Smooth transition for hover effects */
+        }
+        
+        .menu-bar a:hover {
+            background-color: #2980b9; /* Darker blue on hover */
+            border-radius: 5px; /* Rounded corners on hover */
+        }
+
     </style>
 </head>
 <body>
+    <nav>
+    <ul class="menu-bar">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="procedures.html">Procedures</a></li>
+        <li><a href="pribs.html">PRIBS</a></li>
+    </ul>
+    </nav>
     <div class="container">
         <button class="return-btn" onclick="window.history.back()">Back</button>
         <button class="english-btn" onclick="window.location.href='english.html'">English</button>
