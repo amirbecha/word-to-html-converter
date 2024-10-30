@@ -63,7 +63,7 @@ function formatHTML(html) {
 
     // Get the first h1 content for the title
     const titleMatch = html.match(/<h1 property="name" id="wb-cont">(.*?)<\/h1>/);
-    const title = titleMatch ? titleMatch[1] : "Document Title";
+    const title = titleMatch ? titleMatch[1].trim() : "Document Title";
 
     // Extract description from the table
     const description = extractDescription(html);
