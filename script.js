@@ -77,8 +77,12 @@ function formatHTML(html) {
     <!--[if gt IE 8]><!-->
     <html class="no-js" lang="en" dir="ltr">
     <head>
+    <!--#include virtual="/includes/aa/AA_header.html" -->
     <meta charset="utf-8"/>
+    <!-- Start of Title -->
     <title>${title} - GCIntranet - PSPC</title>
+    <!-- End of Title --> 
+    <!-- Start of Metadata -->
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <meta name="description" content="${description}" /> 
     <meta name="dcterms.description" content="${description}" />
@@ -89,8 +93,42 @@ function formatHTML(html) {
     <meta name="dcterms.subject" title="gccore" content="*Insert highlighted topics in the document*" /> 
     <meta name="dcterms.language" title="ISO639-2" content="eng" />
     <meta name="keywords" content="${finalKeywords}" />
+    <!--#include virtual="/includes/aa/AA_metadata.html" --> 
+    <!-- End of Metadata-->
+    <!--#include virtual="/site/wet4.0/html5/includes/tete-head.html" -->
+    <!-- Start of Custom CSS -->
+    <!-- End of Custom CSS--> 
+    <!-- Start of no script code -->
+    <noscript>
+    <link rel="stylesheet" href="/boew-wet/wet4.0/css/noscript.min.css"/>
+    </noscript>
+    <!-- End of no script code--> 
+    <script>dataLayer1 = [];</script>
     </head>
     <body vocab="http://schema.org/" typeof="WebPage">
+    <ul id="wb-tphp">
+      <li class="wb-slc"> <a class="wb-sl" href="#wb-cont">Skip to main content</a> </li>
+      <li class="wb-slc visible-sm visible-md visible-lg"> <a class="wb-sl" href="#wb-info">Skip to "About this site"</a> </li>
+    </ul>
+    <!--#include virtual="/site/wet4.0/html5/includes/banner_site-site_banner-eng.html" --> 
+    <!--#include virtual="/site/wet4.0/html5/includes/nav_mega-mega_nav-eng.html" -->
+    <nav role="navigation" id="wb-bc" class="" property="breadcrumb">
+      <h2 class="wb-inv">You are here:</h2>
+      <div class="container">
+        <div class="row">
+          <ol class="breadcrumb">
+            <!-- Start of pain-bread-eng.html (main site and sub-site) / D&eacute;but de pain-bread-eng.html (site principale et sous-site) --> 
+            <!--#include virtual="/site/wet4.0/html5/includes/pain-bread-eng.html" --> 
+            <!-- End of pain-bread-eng.html (main site and sub-site) / Fin de pain-bread-eng.html (site principale et sous-site) -->
+            <li><a href="/remuneration-compensation/index-eng.html">Compensation</a></li>
+            <li><a href="/remuneration-compensation/comm-eng.html">Compensation community hub</a></li>
+            <li><a href="/remuneration-compensation/instructions-eng.html">Pay system instructions and documentation </a></li>
+            <li><a href="/remuneration-compensation/utiliser-use-eng.html">How to use the pay system</a></li>
+            <li><a href="/remuneration-compensation/procedures/recherche-search-eng.html">Phoenix procedures, job aids and instructions</a></li>
+          </ol>
+        </div>
+      </div>
+    </nav>
     <main role="main" property="mainContentOfPage" class="container">
     <!-- Start of Main Content -->\n`;
 
