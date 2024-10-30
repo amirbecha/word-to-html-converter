@@ -114,6 +114,7 @@ button {
     margin: 0; /* Remove default margin */
     background-color: #3498db; /* Menu background color */
     display: flex; /* Align items in a row */
+    position: relative;
 }
 .menu-bar li {
     display: inline; /* Display items inline */
