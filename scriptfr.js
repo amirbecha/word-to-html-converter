@@ -182,7 +182,7 @@ function formatHTML(html) {
 
 // Function to extract keywords from the HTML content
 function extractKeywords(html) {
-    const regex = /<td[^>]*>\s*<p>\s*<strong>\s*Keywords:\s*<\/strong>\s*(.*?)<\/p>\s*<\/td>\s*<td[^>]*>(.*?)<\/td>/i;
+    const regex = /<td[^>]*>\s*<p>\s*<strong>\s*Mots clés :\s*<\/strong>\s*(.*?)<\/p>\s*<\/td>\s*<td[^>]*>(.*?)<\/td>/i;
     const match = html.match(regex);
 
     if (match && match[2]) {
