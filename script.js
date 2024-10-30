@@ -33,6 +33,9 @@ function formatHTML(html) {
     let formatted = '';
     let indentLevel = 0;
 
+    // Remove the section between the specified <p> and the first <h1>
+    html = html.replace(/<p>\s*<strong>\s*Web content submission template\s*<\/strong>\s*<\/p>\s*(.*?)<h1>/s, '<h1>'); // Removing the unwanted section
+
     // Extract keywords using the new function
     const keywords = extractKeywords(html);
     console.log("Extracted Keywords:", keywords); // Debugging line
