@@ -196,7 +196,7 @@ function extractKeywords(html) {
 
 // Enhanced function to extract description from the HTML
 function extractDescription(html) {
-    const regex = /<td>\s*<p>\s*<strong>\s*Description:\s*<\/strong>\s*(.*?)<\/p>\s*<\/td>\s*<td colspan="3">\s*<p>\s*(.*?)<\/p>\s*<\/td>/;
+    const regex = /<td>\s*<p>\s*<strong>\s*Description\s*:\s*<\/strong>\s*(.*?)<\/p>\s*<\/td>\s*<td colspan="3">\s*<p>\s*(.*?)<\/p>\s*<\/td>/;
     const match = html.match(regex);
 
     if (match) {
