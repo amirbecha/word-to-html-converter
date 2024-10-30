@@ -188,7 +188,8 @@ function extractKeywords(html) {
     if (match && match[2]) {
         // Extract the second <td> content, ignoring nested tags
         const keywordsContent = match[2].replace(/<[^>]*>/g, '').trim(); // Remove any remaining HTML tags
-        return keywordsContent; // Return the cleaned keywords
+        // Split by comma and join with space to add space between keywords
+        return keywordsContent.split(',').map(keyword => keyword.trim()).join(' '); // Return cleaned keywords with space
     }
     
     return ""; // Return empty if no match found
