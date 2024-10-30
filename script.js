@@ -66,8 +66,7 @@ function formatHTML(html) {
     const title = titleMatch ? titleMatch[1] : "Document Title";
 
     // Extract description from the table
-    const descriptionMatch = html.match(/<td>\s*<p>\s*<strong>\s*Description:\s*<\/strong>\s*(.*?)<\/p>\s*<\/td>\s*<td colspan="3">\s*<p>\s*(.*?)<\/p>\s*<\/td>/);
-    const description = descriptionMatch ? descriptionMatch[2].trim() : "No description available.";
+    const description = extractDescription(html);
 
     // Add the HTML structure at the beginning
     formatted += `<!DOCTYPE html>
@@ -75,7 +74,6 @@ function formatHTML(html) {
     <!--[if gt IE 8]><!-->
     <html class="no-js" lang="en" dir="ltr">
     <head>
-    <!--#include virtual="/includes/aa/AA_header.html" -->
     <meta charset="utf-8"/>
     <title>${title} - GCIntranet - PSPC</title>
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
@@ -88,7 +86,6 @@ function formatHTML(html) {
     <meta name="dcterms.subject" title="gccore" content="*Insert highlighted topics in the document*" /> 
     <meta name="dcterms.language" title="ISO639-2" content="eng" />
     <meta name="keywords" content="${finalKeywords}" />
-    <!--#include virtual="/includes/aa/AA_metadata.html" --> 
     </head>
     <body vocab="http://schema.org/" typeof="WebPage">
     <main role="main" property="mainContentOfPage" class="container">
@@ -127,6 +124,33 @@ function extractKeywords(html) {
     }
     
     return ""; // Return empty if no match found
+}
+
+// Enhanced function to extract description from the HTML
+function extractDescription(html) {
+    const regex = /<td>\s*<p>\s*<strong>\s*Description:\s*<\/strong>\s*(.*?)<\/p>\s*<\/td>\s*<td colspan="3">\s*<p>\s*(.*?)<\/p>\s*<\/td>/;
+    const match = html.match(regex);
+
+    if (match) {
+        // Extract the description content, handling possible nested tags
+        let description = match[2].trim();
+
+        // Remove nested HTML tags, keeping the text content
+        description = description.replace(/<[^>]*>/g, '');
+
+        // Additional cleaning: replace multiple spaces with a single space
+        description = description.replace(/\s+/g, ' ');
+
+        // Optional: limit the description length for output
+        const maxLength = 200; // Change this value as needed
+        if (description.length > maxLength) {
+            description = description.substring(0, maxLength) + '...'; // Truncate with ellipsis
+        }
+
+        return description; // Return the cleaned description
+    }
+
+    return "No description available."; // Return default if no match found
 }
 
 function addLineNumbers(html) {
