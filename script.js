@@ -44,8 +44,17 @@ function formatHTML(html) {
     // Remove <a id="_Toc...."></a> tags
     html = html.replace(/<a id="[^"]*"><\/a>/g, '');
 
-    // Temporarily disabled: Remove everything from the specified paragraph to the first <h1>
-    // html = html.replace(/<p>\s*<strong>\s*Web content submission template\s*<\/strong>\s*<\/p>.*?(?=<h1>)/s, '');
+    // Get the current date in Eastern Time
+    const currentDate = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/New_York',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+    }).format(new Date());
+
+    // Reformat the date to YYYY-MM-DD
+    const [month, day, year] = currentDate.split('/');
+    const formattedCurrentDate = `${year}-${month}-${day}`; // Format to YYYY-MM-DD
 
     // Replace <h1> tags to add properties
     html = html.replace(/<h1>(.*?)<\/h1>/g, (match, p1) => {
@@ -55,9 +64,6 @@ function formatHTML(html) {
     // Get the first h1 content for the title
     const titleMatch = html.match(/<h1 property="name" id="wb-cont">(.*?)<\/h1>/);
     const title = titleMatch ? titleMatch[1] : "Document Title";
-
-    // Get the current date
-    const currentDate = new Date().toISOString().split("T")[0]; // Format YYYY-MM-DD
 
     // Extract description from the table
     const descriptionMatch = html.match(/<td>\s*<p>\s*<strong>\s*Description:\s*<\/strong>\s*(.*?)<\/p>\s*<\/td>\s*<td colspan="3">\s*<p>\s*(.*?)<\/p>\s*<\/td>/);
@@ -77,7 +83,7 @@ function formatHTML(html) {
     <meta name="dcterms.description" content="${description}" />
     <meta name="dcterms.creator" content="Government of Canada, Public Services and Procurement Canada, Public Service Pay Centre" />
     <meta name="dcterms.title" content="${title}" /> 
-    <meta name="dcterms.issued" title="W3CDTF" content="${currentDate}" /> 
+    <meta name="dcterms.issued" title="W3CDTF" content="${formattedCurrentDate}" /> 
     <meta name="dcterms.modified" title="W3CDTF" content="<!--#config timefmt='%Y-%m-%d'--><!--#echo var='LAST_MODIFIED'-->" />
     <meta name="dcterms.subject" title="gccore" content="*Insert highlighted topics in the document*" /> 
     <meta name="dcterms.language" title="ISO639-2" content="eng" />
