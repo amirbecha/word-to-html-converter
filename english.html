@@ -49,6 +49,16 @@
             margin-right: 8px; /* Space between arrow and text */
             font-size: 18px; /* Arrow size */
         }
+        .french-btn {
+            position: absolute; /* Position the button at the top right */
+            top: 20px; /* Distance from the top */
+            right: 20px; /* Distance from the right */
+            background-color: #3498db; /* Blue button */
+            color: white;
+        }
+        .french-btn:hover {
+            background-color: #2980b9; /* Darker blue on hover */
+        }
         .convert-btn {
             background-color: #3498db; /* Blue button */
             color: white;
@@ -81,6 +91,7 @@
 <body>
     <div class="container">
         <button class="return-btn" onclick="window.history.back()">Return</button>
+        <button class="french-btn" onclick="window.location.href='french.html'">Français</button>
         <h1>Word to HTML Converter</h1>
         <input type="file" id="upload" accept=".docx" />
         <button class="convert-btn" onclick="convertToHTML()">Convert to HTML</button>
