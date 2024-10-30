@@ -2,7 +2,7 @@ function convertToHTML() {
     console.log("Convert button clicked."); // Log when button is clicked
     const fileInput = document.getElementById("upload");
     const outputDiv = document.getElementById("output");
-    
+
     if (!fileInput.files[0]) {
         outputDiv.innerHTML = "<p>Please upload a .docx file first.</p>";
         return;
@@ -12,16 +12,12 @@ function convertToHTML() {
     reader.onload = function(event) {
         console.log("File loaded."); // Log when file is loaded
         const arrayBuffer = event.target.result;
+
         mammoth.convertToHtml({ arrayBuffer: arrayBuffer })
             .then(function(result) {
                 console.log("Conversion successful."); // Log when conversion is successful
                 const formattedHTML = formatHTML(result.value);
-                const description = extractDescription(result.value);
-                outputDiv.innerHTML = `<h3>Converted HTML Code:</h3>
-                                       <div class="code-container" id="codeDisplay"></div>
-                                       <textarea id="htmlCode" style="display: none;">${formattedHTML}</textarea>
-                                       <h4>Description:</h4><p>${description}</p>
-                                       <button onclick="copyToClipboard()">Copy Code</button>`;
+                outputDiv.innerHTML = `<h3>Converted HTML Code:</h3> <div class="code-container" id="codeDisplay"></div> <textarea id="htmlCode" style="display: none;">${formattedHTML}</textarea> <button onclick="copyToClipboard()">Copy Code</button>`;
                 addLineNumbers(formattedHTML);
             })
             .catch(function(err) {
@@ -36,10 +32,69 @@ function formatHTML(html) {
     const indentSize = 4; // Number of spaces for indentation
     let formatted = '';
     let indentLevel = 0;
-    
+
+    // Extract keywords using the new function
+    const keywords = extractKeywords(html);
+    console.log("Extracted Keywords:", keywords); // Debugging line
+
+    // Clean up the keywords
+    const cleanedKeywords = keywords.replace(/;\s*/g, ','); // Replace semicolons with commas
+    const finalKeywords = cleanedKeywords.replace(/[, ]+$/, ''); // Remove trailing commas or spaces
+
     // Remove <a id="_Toc...."></a> tags
     html = html.replace(/<a id="[^"]*"><\/a>/g, '');
-    
+
+    // Get the current date in Eastern Time
+    const currentDate = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/New_York',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+    }).format(new Date());
+
+    // Reformat the date to YYYY-MM-DD
+    const [month, day, year] = currentDate.split('/');
+    const formattedCurrentDate = `${year}-${month}-${day}`; // Format to YYYY-MM-DD
+
+    // Replace <h1> tags to add properties
+    html = html.replace(/<h1>(.*?)<\/h1>/g, (match, p1) => {
+        return `<h1 property="name" id="wb-cont">${p1}</h1>`;
+    });
+
+    // Get the first h1 content for the title
+    const titleMatch = html.match(/<h1 property="name" id="wb-cont">(.*?)<\/h1>/);
+    const title = titleMatch ? titleMatch[1] : "Document Title";
+
+    // Extract description from the table
+    const descriptionMatch = html.match(/<td>\s*<p>\s*<strong>\s*Description:\s*<\/strong>\s*(.*?)<\/p>\s*<\/td>\s*<td colspan="3">\s*<p>\s*(.*?)<\/p>\s*<\/td>/);
+    const description = descriptionMatch ? descriptionMatch[2].trim() : "No description available.";
+
+    // Add the HTML structure at the beginning
+    formatted += `<!DOCTYPE html>
+    <!--[if lt IE 9]><html class="no-js lt-ie9" lang="en" dir="ltr"><![endif]-->
+    <!--[if gt IE 8]><!-->
+    <html class="no-js" lang="en" dir="ltr">
+    <head>
+    <!--#include virtual="/includes/aa/AA_header.html" -->
+    <meta charset="utf-8"/>
+    <title>${title} - GCIntranet - PSPC</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta name="description" content="${description}" /> 
+    <meta name="dcterms.description" content="${description}" />
+    <meta name="dcterms.creator" content="Government of Canada, Public Services and Procurement Canada, Public Service Pay Centre" />
+    <meta name="dcterms.title" content="${title}" /> 
+    <meta name="dcterms.issued" title="W3CDTF" content="${formattedCurrentDate}" /> 
+    <meta name="dcterms.modified" title="W3CDTF" content="<!--#config timefmt='%Y-%m-%d'--><!--#echo var='LAST_MODIFIED'-->" />
+    <meta name="dcterms.subject" title="gccore" content="*Insert highlighted topics in the document*" /> 
+    <meta name="dcterms.language" title="ISO639-2" content="eng" />
+    <meta name="keywords" content="${finalKeywords}" />
+    <!--#include virtual="/includes/aa/AA_metadata.html" --> 
+    </head>
+    <body vocab="http://schema.org/" typeof="WebPage">
+    <main role="main" property="mainContentOfPage" class="container">
+    <!-- Start of Main Content -->\n`;
+
+    // Indentation and formatting of the rest of the HTML
     html.split(/(?=<)|(?<=>)/g).forEach((part) => {
         if (part.match(/<[^/!][^>]*>/)) { // Opening tag
             formatted += ' '.repeat(indentLevel * indentSize) + part.trim() + '\n';
@@ -51,8 +106,27 @@ function formatHTML(html) {
             formatted += ' '.repeat(indentLevel * indentSize) + part.trim() + '\n';
         }
     });
+
+    formatted += `<!-- End of Main Content -->
+    </main>
+    </body>
+    </html>`;
     
     return formatted.trim(); // Remove any leading/trailing whitespace
+}
+
+// Function to extract keywords from the HTML content
+function extractKeywords(html) {
+    const regex = /<td[^>]*>\s*<p>\s*<strong>\s*Keywords:\s*<\/strong>\s*(.*?)<\/p>\s*<\/td>\s*<td[^>]*>(.*?)<\/td>/i;
+    const match = html.match(regex);
+
+    if (match && match[2]) {
+        // Extract the second <td> content, ignoring nested tags
+        const keywordsContent = match[2].replace(/<[^>]*>/g, '').trim(); // Remove any remaining HTML tags
+        return keywordsContent; // Return the cleaned keywords
+    }
+    
+    return ""; // Return empty if no match found
 }
 
 function addLineNumbers(html) {
@@ -63,7 +137,7 @@ function addLineNumbers(html) {
     const codeDiv = document.createElement("div");
     lineNumbersDiv.className = "line-numbers";
     codeDiv.className = "code";
-    
+
     lines.forEach((line, index) => {
         const lineNumber = document.createElement("div"); // Use div for line numbers
         lineNumber.textContent = index + 1; // Line number
@@ -72,7 +146,7 @@ function addLineNumbers(html) {
         lineNumbersDiv.appendChild(lineNumber);
         codeDiv.appendChild(codeLine);
     });
-    
+
     codeDisplay.appendChild(lineNumbersDiv);
     codeDisplay.appendChild(codeDiv);
 }
@@ -84,45 +158,4 @@ function copyToClipboard() {
     document.execCommand("copy"); // Copy the selected text to the clipboard
     textarea.style.display = "none"; // Hide textarea again
     alert("HTML code copied to clipboard!"); // Notify the user
-}
-
-function extractDescription(html) {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-
-    // Find the first strong element containing "Description"
-    const descriptionHeader = Array.from(doc.querySelectorAll('strong')).find(el => el.textContent.trim().toLowerCase() === "description:");
-
-    if (descriptionHeader) {
-        // Get the parent <p> of the description header
-        const parentParagraph = descriptionHeader.closest('p');
-
-        if (parentParagraph) {
-            // Initialize an array to store description lines
-            const descriptionLines = [];
-
-            // Iterate through the next siblings to gather description text
-            let nextElement = parentParagraph.nextElementSibling;
-
-            while (nextElement) {
-                // Stop if we encounter a new <strong> header or another significant change
-                if (nextElement.tagName === 'STRONG') {
-                    break; // Stop if a new description header is found
-                }
-
-                // Add text content from <td> or <p> elements
-                if (nextElement.tagName === 'TD' || nextElement.tagName === 'P') {
-                    descriptionLines.push(nextElement.textContent.trim());
-                }
-
-                // Move to the next sibling
-                nextElement = nextElement.nextElementSibling;
-            }
-
-            // Return the concatenated description text or a default message if none found
-            return descriptionLines.length ? descriptionLines.join(' ') : "No description available.";
-        }
-    }
-
-    return "No description available."; // Return a default message if no match found
 }
