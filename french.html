@@ -121,9 +121,8 @@
         <h1>Word to HTML Converter - French document</h1>
         <div class="file-upload-btn">
             Select File
-            <input type="file" id="upload" accept=".docx" />
+            <input type="file" id="upload" accept=".docx" onclick="convertToHTML()" />
         </div>
-        <button class="convert-btn" onclick="convertToHTML()">Convert to HTML</button>
         <div id="output"></div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
