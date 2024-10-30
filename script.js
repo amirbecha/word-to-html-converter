@@ -161,7 +161,6 @@ function addLineNumbers(html) {
     const codeDiv = document.createElement("div");
     lineNumbersDiv.className = "line-numbers";
     codeDiv.className = "code";
-
     lines.forEach((line, index) => {
         const lineNumber = document.createElement("div"); // Use div for line numbers
         lineNumber.textContent = index + 1; // Line number
@@ -170,7 +169,6 @@ function addLineNumbers(html) {
         lineNumbersDiv.appendChild(lineNumber);
         codeDiv.appendChild(codeLine);
     });
-
     codeDisplay.appendChild(lineNumbersDiv);
     codeDisplay.appendChild(codeDiv);
 }
