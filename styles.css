@@ -45,15 +45,6 @@ button {
     margin-right: 8px; /* Space between arrow and text */
     font-size: 18px; /* Arrow size */
 }
-.english-btn {
-    position: absolute; /* Position the button at the top right */
-    top: 20px; /* Distance from the top */
-    margin-right: auto; /* Push the English button to the right end */
-    background-color: #3498db; /* Blue button */
-    color: white;
-}
-.english-btn:hover {
-    background-color: #2980b9; /* Darker blue on hover */
 }
 .button, .file-upload-btn {
     padding: 10px 20px;
