@@ -147,6 +147,25 @@ function formatHTML(html) {
 
     formatted += `<!-- End of Main Content -->
     </main>
+    <div class="row pagedetails">
+        <div class="col-sm-5 col-xs-12 datemod">
+          <dl id="wb-dtmd">
+            <dt>Date modified:&#32;</dt>
+            <dd>
+              <time property="dateModified"> 
+                <!--#config timefmt='%Y-%m-%d'--> 
+                <!--#echo var='LAST_MODIFIED'--> 
+              </time>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </main>
+    <!--#include virtual="/site/wet4.0/html5/includes/pied_site-site_footer-eng.html" --> 
+    <!--#set var="piwikSiteId" value="308" --> 
+    <!--#include virtual="/includes/piwik/piwik.html" --> 
+    <!--#include virtual="/site/wet4.0/html5/includes/script-pied_site-site_footer.html" --> 
+    <!--#include virtual="/includes/aa/AA_footer.html" -->
     </body>
     </html>`;
     
