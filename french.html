@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word to HTML Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #f4f4f4; /* Light gray background */
+            color: #333; /* Dark text color */
+        }
+        h1 {
+            color: #2c3e50; /* Dark blue heading */
+            text-align: center; /* Center align heading */
+        }
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #ffffff; /* White background for output */
+            border-radius: 5px; /* Rounded corners for output */
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s, transform 0.2s; /* Smooth transition for hover effects */
+        }
+        .convert-btn {
+            background-color: #3498db; /* Blue button */
+            color: white;
+        }
+        .convert-btn:hover {
+            background-color: #2980b9; /* Darker blue on hover */
+            transform: scale(1.05); /* Slightly enlarge button on hover */
+        }
+        .code-container {
+            display: flex; /* Use flexbox to align line numbers and code */
+            white-space: pre; /* Maintain whitespace */
+            font-family: monospace; /* Use a monospaced font for code */
+        }
+        .line-numbers {
+            display: inline-block;
+            width: 40px; /* Fixed width for line numbers */
+            padding-right: 10px; /* Space between line numbers and code */
+            text-align: right; /* Right align numbers */
+            color: #888; /* Light color for line numbers */
+            user-select: none; /* Prevent selection of line numbers */
+            border-right: 1px solid #ddd; /* Optional: border between numbers and code */
+        }
+        .code { /* Code styles */
+            flex-grow: 1; /* Take up the remaining space */
+            padding-left: 10px; /* Space between numbers and code */
+            overflow-x: auto; /* Enable horizontal scrolling */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Word to HTML Converter</h1>
+        <input type="file" id="upload" accept=".docx" />
+        <button class="convert-btn" onclick="convertToHTML()">Convert to HTML</button>
+        <div id="output"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
+    <script src="scriptfr.js"></script>
+</body>
+</html>
