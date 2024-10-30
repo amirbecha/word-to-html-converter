@@ -40,6 +40,16 @@
             background-color: #2980b9; /* Darker blue on hover */
             transform: scale(1.05); /* Slightly enlarge button on hover */
         }
+        .return-btn {
+            position: absolute; /* Position the button at the top right */
+            top: 20px; /* Distance from the top */
+            right: 20px; /* Distance from the right */
+            background-color: #e74c3c; /* Red button */
+            color: white;
+        }
+        .return-btn:hover {
+            background-color: #c0392b; /* Darker red on hover */
+        }
         .code-container {
             display: flex; /* Use flexbox to align line numbers and code */
             white-space: pre; /* Maintain whitespace */
@@ -63,6 +73,7 @@
 </head>
 <body>
     <div class="container">
+        <button class="return-btn" onclick="window.history.back()">Return</button>
         <h1>Word to HTML Converter</h1>
         <input type="file" id="upload" accept=".docx" />
         <button class="convert-btn" onclick="convertToHTML()">Convert to HTML</button>
