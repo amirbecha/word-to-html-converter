@@ -146,7 +146,6 @@ function formatHTML(html) {
     });
 
     formatted += `<!-- End of Main Content -->
-    </main>
     <div class="row pagedetails">
         <div class="col-sm-5 col-xs-12 datemod">
           <dl id="wb-dtmd">
