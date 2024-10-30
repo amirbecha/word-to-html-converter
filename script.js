@@ -33,20 +33,13 @@ function formatHTML(html) {
     let formatted = '';
     let indentLevel = 0;
 
-    // Extract keywords from the table
-    const rowMatch = html.match(/<tr[^>]*>(?:[^<]*<td[^>]*>(?:<[^>]*>)*[^<]*<\/td>)*<td[^>]*>\s*Keywords\s*<\/td>\s*<td[^>]*>(.*?)<\/td>/i);
-    let keywords = "";
-
-    if (rowMatch) {
-        keywords = rowMatch[1]; // Get content from the next <td>
-        console.log("Extracted Keywords:", keywords); // Debugging line
-    } else {
-        console.log("No keywords found."); // Debugging line
-    }
+    // Extract keywords using the new function
+    const keywords = extractKeywords(html);
+    console.log("Extracted Keywords:", keywords); // Debugging line
 
     // Clean up the keywords
-    keywords = keywords.replace(/;\s*/g, ','); // Replace semicolons with commas
-    keywords = keywords.replace(/[, ]+$/, ''); // Remove trailing commas or spaces
+    const cleanedKeywords = keywords.replace(/;\s*/g, ','); // Replace semicolons with commas
+    const finalKeywords = cleanedKeywords.replace(/[, ]+$/, ''); // Remove trailing commas or spaces
 
     // Remove <a id="_Toc...."></a> tags
     html = html.replace(/<a id="[^"]*"><\/a>/g, '');
@@ -88,7 +81,7 @@ function formatHTML(html) {
     <meta name="dcterms.modified" title="W3CDTF" content="<!--#config timefmt='%Y-%m-%d'--><!--#echo var='LAST_MODIFIED'-->" />
     <meta name="dcterms.subject" title="gccore" content="*Insert highlighted topics in the document*" /> 
     <meta name="dcterms.language" title="ISO639-2" content="eng" />
-    <meta name="keywords" content="${keywords}" />
+    <meta name="keywords" content="${finalKeywords}" />
     <!--#include virtual="/includes/aa/AA_metadata.html" --> 
     </head>
     <body vocab="http://schema.org/" typeof="WebPage">
@@ -114,6 +107,20 @@ function formatHTML(html) {
     </html>`;
     
     return formatted.trim(); // Remove any leading/trailing whitespace
+}
+
+// Function to extract keywords from the HTML content
+function extractKeywords(html) {
+    const regex = /<td[^>]*>\s*<p>\s*<strong>\s*Keywords:\s*<\/strong>\s*(.*?)<\/p>\s*<\/td>\s*<td[^>]*>(.*?)<\/td>/i;
+    const match = html.match(regex);
+
+    if (match && match[2]) {
+        // Extract the second <td> content, ignoring nested tags
+        const keywordsContent = match[2].replace(/<[^>]*>/g, '').trim(); // Remove any remaining HTML tags
+        return keywordsContent; // Return the cleaned keywords
+    }
+    
+    return ""; // Return empty if no match found
 }
 
 function addLineNumbers(html) {
