@@ -23,25 +23,17 @@
             background-color: #ffffff;
             border-radius: 5px;
         }
-        .button-container {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        button, .file-upload-btn {
+        .file-upload-btn {
+            display: block;
+            margin: 20px auto;
             padding: 10px 20px;
             font-size: 16px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-        .file-upload-btn {
-            position: relative;
-            overflow: hidden;
             background-color: #3498db;
             color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
         }
         .file-upload-btn:hover {
             background-color: #2980b9;
@@ -54,14 +46,6 @@
             height: 100%;
             opacity: 0;
             cursor: pointer;
-        }
-        .convert-btn {
-            background-color: #3498db;
-            color: white;
-        }
-        .convert-btn:hover {
-            background-color: #2980b9;
-            transform: scale(1.05);
         }
         .return-btn {
             position: absolute;
@@ -95,12 +79,9 @@
         <button class="return-btn" onclick="window.history.back()">Back</button>
         <button class="english-btn" onclick="window.location.href='english.html'">English</button>
         <h1>Word to HTML Converter - French document</h1>
-        <div class="button-container">
-            <div class="file-upload-btn">
-                Select File
-                <input type="file" id="upload" accept=".docx" />
-            </div>
-            <button class="convert-btn" onclick="convertToHTML()">Convert to HTML</button>
+        <div class="file-upload-btn">
+            Select File
+            <input type="file" id="upload" accept=".docx" onchange="convertToHTML()" />
         </div>
         <div id="output"></div>
     </div>
