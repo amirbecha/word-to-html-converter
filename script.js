@@ -33,6 +33,9 @@ function formatHTML(html) {
     let formatted = '';
     let indentLevel = 0;
 
+    // Remove the unwanted section
+    html = html.replace(/<p>\s*<strong>\s*Web content submission template\s*<\/strong>\s*<\/p>(.*?)(?=<h1>)/s, '');
+
     // Extract keywords using the new function
     const keywords = extractKeywords(html);
     console.log("Extracted Keywords:", keywords); // Debugging line
@@ -40,9 +43,6 @@ function formatHTML(html) {
     // Clean up the keywords
     const cleanedKeywords = keywords.replace(/;\s*/g, ','); // Replace semicolons with commas
     const finalKeywords = cleanedKeywords.replace(/[, ]+$/, ''); // Remove trailing commas or spaces
-
-    // Remove <a id="_Toc...."></a> tags
-    html = html.replace(/<a id="[^"]*"><\/a>/g, '');
 
     // Get the current date in Eastern Time
     const currentDate = new Intl.DateTimeFormat('en-US', {
