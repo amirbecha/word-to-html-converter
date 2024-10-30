@@ -91,7 +91,7 @@ function formatHTML(html) {
     <meta name="dcterms.issued" title="W3CDTF" content="${formattedCurrentDate}" /> 
     <meta name="dcterms.modified" title="W3CDTF" content="<!--#config timefmt='%Y-%m-%d'--><!--#echo var='LAST_MODIFIED'-->" />
     <meta name="dcterms.subject" title="gccore" content="*Insert highlighted topics in the document*" /> 
-    <meta name="dcterms.language" title="ISO639-2" content="eng" />
+    <meta name="dcterms.language" title="ISO639-2" content="fra" />
     <meta name="keywords" content="${finalKeywords}" />
     <!--#include virtual="/includes/aa/AA_metadata.html" -->
     <!-- End of Metadata-->
@@ -182,7 +182,7 @@ function formatHTML(html) {
 
 // Function to extract keywords from the HTML content
 function extractKeywords(html) {
-    const regex = /<td[^>]*>\s*<p>\s*<strong>\s*Mots clés :\s*<\/strong>\s*(.*?)<\/p>\s*<\/td>\s*<td[^>]*>(.*?)<\/td>/i;
+    const regex = /<td[^>]*>\s*<p>\s*<strong>\s*Mots clés:\s*<\/strong>\s*(.*?)<\/p>\s*<\/td>\s*<td[^>]*>(.*?)<\/td>/i;
     const match = html.match(regex);
 
     if (match && match[2]) {
