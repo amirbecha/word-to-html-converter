@@ -2,14 +2,17 @@ function convertToHTML() {
     console.log("Convert button clicked."); // Log when button is clicked
     const fileInput = document.getElementById("upload");
     const outputDiv = document.getElementById("output");
+
     if (!fileInput.files[0]) {
         outputDiv.innerHTML = "<p>Please upload a .docx file first.</p>";
         return;
     }
+
     const reader = new FileReader();
     reader.onload = function(event) {
         console.log("File loaded."); // Log when file is loaded
         const arrayBuffer = event.target.result;
+        
         mammoth.convertToHtml({ arrayBuffer: arrayBuffer })
             .then(function(result) {
                 console.log("Conversion successful."); // Log when conversion is successful
@@ -53,41 +56,39 @@ function formatHTML(html) {
     const description = descriptionMatch ? descriptionMatch[2].trim() : "No description available.";
 
     // Extract keywords from the table
-    const keywordsMatch = html.match(/<td>\s*<p>\s*<strong>\s*Keywords:\s*<\/strong>\s*(.*?)<\/p>\s*<\/td>\s*<td colspan="3">\s*<p>\s*(.*?)<\/p>\s*<\/td>/);
-    let keywords = keywordsMatch ? keywordsMatch[2].trim() : "No keywords available.";
+    const keywordsMatch = html.match(/<strong>\s*Keywords:\s*<\/strong>\s*<\/td>\s*<td[^>]*>\s*(.*?)\s*<\/td>/);
+    let keywords = keywordsMatch ? keywordsMatch[1].trim() : "No keywords available.";
+
+    // Clean up the keywords
+    keywords = keywords.replace(/;\s*/g, ','); // Replace semicolons with commas
+    keywords = keywords.replace(/[, ]+$/, ''); // Remove trailing commas or spaces
     
-    // Replace semicolons with commas in keywords
-    keywords = keywords.replace(/;\s*/g, ',');
-
-    // Remove trailing commas or spaces
-    keywords = keywords.replace(/[, ]+$/, '');
-
     // Add the HTML structure at the beginning
     formatted += `<!DOCTYPE html>
-<!--[if lt IE 9]><html class="no-js lt-ie9" lang="en" dir="ltr"><![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js" lang="en" dir="ltr">
-<head>
-<!--#include virtual="/includes/aa/AA_header.html" -->
-<meta charset="utf-8"/>
-<title>${title} - GCIntranet - PSPC</title>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<meta name="description" content="${description}" /> 
-<meta name="dcterms.description" content="${description}" />
-<meta name="dcterms.creator" content="Government of Canada, Public Services and Procurement Canada, Public Service Pay Centre" />
-<meta name="dcterms.title" content="${title}" /> 
-<meta name="dcterms.issued" title="W3CDTF" content="${currentDate}" /> 
-<meta name="dcterms.modified" title="W3CDTF" content="<!--#config timefmt='%Y-%m-%d'--><!--#echo var='LAST_MODIFIED'-->" />
-<meta name="dcterms.subject" title="gccore" content="*Insert highlighted topics in the document*" /> 
-<meta name="dcterms.language" title="ISO639-2" content="eng" />
-<meta name="keywords" content="${keywords}" />
-<!--#include virtual="/includes/aa/AA_metadata.html" --> 
-</head>
-<body vocab="http://schema.org/" typeof="WebPage">
-<main role="main" property="mainContentOfPage" class="container">
-<!-- Start of Main Content -->\n`;
+    <!--[if lt IE 9]><html class="no-js lt-ie9" lang="en" dir="ltr"><![endif]-->
+    <!--[if gt IE 8]><!-->
+    <html class="no-js" lang="en" dir="ltr">
+    <head>
+    <!--#include virtual="/includes/aa/AA_header.html" -->
+    <meta charset="utf-8"/>
+    <title>${title} - GCIntranet - PSPC</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta name="description" content="${description}" /> 
+    <meta name="dcterms.description" content="${description}" />
+    <meta name="dcterms.creator" content="Government of Canada, Public Services and Procurement Canada, Public Service Pay Centre" />
+    <meta name="dcterms.title" content="${title}" /> 
+    <meta name="dcterms.issued" title="W3CDTF" content="${currentDate}" /> 
+    <meta name="dcterms.modified" title="W3CDTF" content="<!--#config timefmt='%Y-%m-%d'--><!--#echo var='LAST_MODIFIED'-->" />
+    <meta name="dcterms.subject" title="gccore" content="*Insert highlighted topics in the document*" /> 
+    <meta name="dcterms.language" title="ISO639-2" content="eng" />
+    <meta name="keywords" content="${keywords}" />
+    <!--#include virtual="/includes/aa/AA_metadata.html" --> 
+    </head>
+    <body vocab="http://schema.org/" typeof="WebPage">
+    <main role="main" property="mainContentOfPage" class="container">
+    <!-- Start of Main Content -->\n`;
 
-    // Split and format the remaining HTML
+    // Indentation and formatting of the rest of the HTML
     html.split(/(?=<)|(?<=>)/g).forEach((part) => {
         if (part.match(/<[^/!][^>]*>/)) { // Opening tag
             formatted += ' '.repeat(indentLevel * indentSize) + part.trim() + '\n';
@@ -100,14 +101,12 @@ function formatHTML(html) {
         }
     });
 
-    // Add the specified footer content after the main content
     formatted += `<!-- End of Main Content -->
-</main>
-<!--#include virtual="/includes/footer.html" --> 
-</body>
-</html>`;
-
-    return formatted.trim();
+    </main>
+    </body>
+    </html>`;
+    
+    return formatted.trim(); // Remove any leading/trailing whitespace
 }
 
 function addLineNumbers(html) {
@@ -118,14 +117,16 @@ function addLineNumbers(html) {
     const codeDiv = document.createElement("div");
     lineNumbersDiv.className = "line-numbers";
     codeDiv.className = "code";
+
     lines.forEach((line, index) => {
-        const lineNumber = document.createElement("div");
-        lineNumber.textContent = index + 1;
-        const codeLine = document.createElement("div");
-        codeLine.textContent = line;
+        const lineNumber = document.createElement("div"); // Use div for line numbers
+        lineNumber.textContent = index + 1; // Line number
+        const codeLine = document.createElement("div"); // Use div for code lines
+        codeLine.textContent = line; // Code line
         lineNumbersDiv.appendChild(lineNumber);
         codeDiv.appendChild(codeLine);
     });
+
     codeDisplay.appendChild(lineNumbersDiv);
     codeDisplay.appendChild(codeDiv);
 }
