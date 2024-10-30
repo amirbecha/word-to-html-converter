@@ -110,6 +110,9 @@ button {
 .menu-bar li {
     display: inline; /* Display items inline */
 }
+.menu-bar li:last-child {
+    margin-left: auto; /* Pushes the last item to the right */
+}
 .menu-bar a {
     text-decoration: none; /* Remove underline from links */
     color: white; /* Link text color */
