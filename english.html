@@ -40,14 +40,6 @@
             background-color: #2980b9; /* Darker blue on hover */
             transform: scale(1.05); /* Slightly enlarge button on hover */
         }
-        .copy-btn {
-            background-color: #2ecc71; /* Green button */
-            color: white;
-        }
-        .copy-btn:hover {
-            background-color: #27ae60; /* Darker green on hover */
-            transform: scale(1.05); /* Slightly enlarge button on hover */
-        }
         .code-container {
             display: flex; /* Use flexbox to align line numbers and code */
             white-space: pre; /* Maintain whitespace */
@@ -75,7 +67,6 @@
         <input type="file" id="upload" accept=".docx" />
         <button class="convert-btn" onclick="convertToHTML()">Convert to HTML</button>
         <div id="output"></div>
-        <button class="copy-btn" id="copyBtn" style="display: none;" onclick="copyToClipboard()">Copy Code</button>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
     <script src="script.js"></script>
