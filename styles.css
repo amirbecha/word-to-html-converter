@@ -46,6 +46,7 @@ button {
     font-size: 18px; /* Arrow size */
 }
 .english-btn {
+    top: 20px; /* Distance from the top */
     position: absolute; /* Position the button at the top right */
     margin-left: auto; /* Push the English button to the right end */
     background-color: #3498db; /* Blue button */
