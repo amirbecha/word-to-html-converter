@@ -57,7 +57,15 @@ function formatHTML(html) {
 
     // Extract keywords from the table
     const keywordsMatch = html.match(/<strong>\s*Keywords:\s*<\/strong>\s*<\/td>\s*<td[^>]*>\s*(.*?)\s*<\/td>/);
-    let keywords = keywordsMatch ? keywordsMatch[1].trim() : "No keywords available.";
+    let keywords = "";
+
+    if (keywordsMatch) {
+        // Look for the 'Keywords' label and get the next <td> in the same row
+        const rowMatch = html.match(/<tr[^>]*>.*?<td[^>]*>\s*<strong>\s*Keywords:\s*<\/strong>\s*<\/td>\s*<td[^>]*>(.*?)<\/td>/);
+        if (rowMatch) {
+            keywords = rowMatch[1].trim(); // Get content from the next <td>
+        }
+    }
 
     // Clean up the keywords
     keywords = keywords.replace(/;\s*/g, ','); // Replace semicolons with commas
