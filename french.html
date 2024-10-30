@@ -23,9 +23,14 @@
             background-color: #ffffff;
             border-radius: 5px;
         }
-        .file-upload-btn {
-            display: block;
+        .file-upload-wrapper {
+            position: relative;
+            display: inline-block;
             margin: 20px auto;
+            text-align: center;
+        }
+        .file-upload-btn {
+            display: inline-block;
             padding: 10px 20px;
             font-size: 16px;
             background-color: #3498db;
@@ -38,7 +43,7 @@
         .file-upload-btn:hover {
             background-color: #2980b9;
         }
-        .file-upload-btn input[type="file"] {
+        #upload {
             position: absolute;
             top: 0;
             left: 0;
@@ -53,6 +58,9 @@
             left: 20px;
             background-color: #e74c3c;
             color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
         }
         .return-btn:hover {
             background-color: #c0392b;
@@ -68,6 +76,9 @@
             right: 20px;
             background-color: #3498db;
             color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
         }
         .english-btn:hover {
             background-color: #2980b9;
@@ -79,8 +90,8 @@
         <button class="return-btn" onclick="window.history.back()">Back</button>
         <button class="english-btn" onclick="window.location.href='english.html'">English</button>
         <h1>Word to HTML Converter - French document</h1>
-        <div class="file-upload-btn">
-            Select File
+        <div class="file-upload-wrapper">
+            <button class="file-upload-btn">Select File</button>
             <input type="file" id="upload" accept=".docx" onchange="convertToHTML()" />
         </div>
         <div id="output"></div>
