@@ -33,16 +33,15 @@ function formatHTML(html) {
     let formatted = '';
     let indentLevel = 0;
 
-    // Extract keywords from the table first
-    const keywordsMatch = html.match(/<strong>\s*Keywords:\s*<\/strong>\s*<\/td>\s*<td[^>]*>\s*(.*?)\s*<\/td>/);
+    // Extract keywords from the table
+    const rowMatch = html.match(/<tr[^>]*>(?:[^<]*<td[^>]*>(?:<[^>]*>)*[^<]*<\/td>)*<td[^>]*>\s*Keywords\s*<\/td>\s*<td[^>]*>(.*?)<\/td>/i);
     let keywords = "";
 
-    if (keywordsMatch) {
-        // Look for the 'Keywords' label and get the next <td> in the same row
-        const rowMatch = html.match(/<tr[^>]*>.*?<td[^>]*>\s*<strong>\s*Keywords:\s*<\/strong>\s*<\/td>\s*<td[^>]*>(.*?)<\/td>/);
-        if (rowMatch) {
-            keywords = rowMatch[1].trim(); // Get content from the next <td>
-        }
+    if (rowMatch) {
+        keywords = rowMatch[1]; // Get content from the next <td>
+        console.log("Extracted Keywords:", keywords); // Debugging line
+    } else {
+        console.log("No keywords found."); // Debugging line
     }
 
     // Clean up the keywords
