@@ -56,7 +56,7 @@
             background-color: #3498db; /* Blue button */
             color: white;
         }
-        .french-btn:hover {
+        .english-btn:hover {
             background-color: #2980b9; /* Darker blue on hover */
         }
         .convert-btn {
@@ -66,6 +66,30 @@
         .convert-btn:hover {
             background-color: #2980b9; /* Darker blue on hover */
             transform: scale(1.05); /* Slightly enlarge button on hover */
+        }
+        .file-upload-btn {
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #3498db; /* Blue button */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .file-upload-btn:hover {
+            background-color: #2980b9; /* Darker blue on hover */
+        }
+        .file-upload-btn input[type="file"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
         }
         .code-container {
             display: flex; /* Use flexbox to align line numbers and code */
@@ -86,32 +110,6 @@
             padding-left: 10px; /* Space between numbers and code */
             overflow-x: auto; /* Enable horizontal scrolling */
         }
-        .file-upload {
-        position: relative;
-        overflow: hidden;
-        display: inline-block;
-        background-color: #3498db; /* Blue button */
-        color: white;
-        padding: 10px 20px;
-        font-size: 16px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-
-    .file-upload:hover {
-        background-color: #2980b9; /* Darker blue on hover */
-    }
-
-    .file-upload input[type="file"] {
-        position: absolute;
-        opacity: 0;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        cursor: pointer;
-    }
     </style>
 </head>
 <body>
@@ -119,11 +117,11 @@
         <button class="return-btn" onclick="window.history.back()">Back</button>
         <button class="english-btn" onclick="window.location.href='english.html'">English</button>
         <h1>Word to HTML Converter - French document</h1>
-        <div class="file-upload">
-        <span>Choose File</span>
-        <input type="file" id="upload" accept=".docx" />
-        <button class="convert-btn" onclick="convertToHTML()">Convert to HTML</button>
+        <div class="file-upload-btn">
+            Select File
+            <input type="file" id="upload" accept=".docx" />
         </div>
+        <button class="convert-btn" onclick="convertToHTML()">Convert to HTML</button>
         <div id="output"></div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
