@@ -152,26 +152,30 @@ function formatHTML(html) {
 
     formatted += `<!-- End of Main Content -->
     <div class="row pagedetails">
-        <div class="col-sm-5 col-xs-12 datemod">
-          <dl id="wb-dtmd">
-            <dt>Date modified:&#32;</dt>
-            <dd>
-              <time property="dateModified"> 
-                <!--#config timefmt='%Y-%m-%d'--> 
-                <!--#echo var='LAST_MODIFIED'--> 
-              </time>
-            </dd>
-          </dl>
-        </div>
-      </div>
-    </main>
-    <!--#include virtual="/site/wet4.0/html5/includes/pied_site-site_footer-eng.html" --> 
-    <!--#set var="piwikSiteId" value="308" --> 
-    <!--#include virtual="/includes/piwik/piwik.html" --> 
-    <!--#include virtual="/site/wet4.0/html5/includes/script-pied_site-site_footer.html" --> 
-    <!--#include virtual="/includes/aa/AA_footer.html" -->
-    </body>
-    </html>`;
+    <div class="col-sm-5 col-xs-12 datemod">
+      <dl id="wb-dtmd">
+        <dt>Date de modification&#160;:&#32;</dt>
+        <dd>
+          <time property="dateModified"><!--#config timefmt='%Y-%m-%d'--><!--#echo var='LAST_MODIFIED'--></time>
+        </dd>
+      </dl>
+    </div> 
+  </div>
+</main>
+<!-- End of Main Content --> 
+<!-- Start of pied_site-site_footer-fra.html / D&eacute;but de pied_site-site_footer-fra.html --> 
+<!--#include virtual="/site/wet4.0/html5/includes/pied_site-site_footer-fra.html" --> 
+<!-- End of pied_site-site_footer-fra.html / Fin de pied_site-site_footer-fra.html --> 
+<!-- Start of script-pied_site-site_footer.html / D&eacute;but de script-pied_site-site_footer.html --> 
+<!--#include virtual="/site/wet4.0/html5/includes/script-pied_site-site_footer.html" --> 
+<!-- End of script-pied_site-site_footer.html / Fin de script-pied_site-site_footer.html --> 
+<!-- Start of Custom Scripts --> 
+<!--#set var="piwikSiteId" value="308" --> 
+<!--#include virtual="/includes/piwik/piwik.html" --> 
+<!-- End of Custom Scripts --> 
+<!--#include virtual="/includes/aa/AA_footer.html" -->
+</body>
+</html>`;
     
     return formatted.trim(); // Remove any leading/trailing whitespace
 }
