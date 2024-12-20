@@ -1,27 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Word to HTML Converter</title>
-  <style>
-    body { font-family: Arial, sans-serif; max-width: 800px; margin: 20px auto; }
-    .container { text-align: center; }
-    #output { margin-top: 20px; padding: 10px; border: 1px solid #ddd; background-color: #f9f9f9; }
-    button { margin-top: 10px; }
-    .code-container { display: flex; white-space: pre; font-family: monospace; }
-    .line-numbers { display: inline-block; width: 40px; padding-right: 10px; text-align: right; color: #888; user-select: none; border-right: 1px solid #ddd; }
-    .code { flex-grow: 1; padding-left: 10px; overflow-x: auto; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word to HTML Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f4f4f4; /* Light gray background */
+            color: #333; /* Dark text color */
+        }
+        h1 {
+            color: #2c3e50; /* Dark blue heading */
+        }
+        button {
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s, transform 0.2s; /* Smooth transition for hover effects */
+        }
+        .btn-english {
+            background-color: #3498db; /* Blue button */
+            color: white;
+        }
+        .btn-french {
+            background-color: #3498db; /* Blue button */
+            color: white;
+        }
+        button:hover {
+            transform: scale(1.05); /* Slightly enlarge button on hover */
+        }
+        .btn-english:hover {
+            background-color: #2980b9; /* Darker blue on hover */
+        }
+        .btn-french:hover {
+            background-color: #2980b9; /* Darker blue on hover */
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Word to HTML Converter</h1>
-    <input type="file" id="upload" accept=".docx" />
-    <button onclick="convertToHTML()">Convert to HTML</button>
-    <div id="output"></div>
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
-  <script src="script.js"></script>
+    <h1>Welcome to the Word to HTML Converter</h1>
+    <button class="btn-english" onclick="window.location.href='english.html'">English</button>
+    <button class="btn-french" onclick="window.location.href='french.html'">French</button>
 </body>
 </html>
