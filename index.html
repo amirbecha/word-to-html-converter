@@ -20,9 +20,7 @@
 
     <!-- Main content (hidden until login) -->
     <div id="content" style="display: none;">
-        <h1>Welcome to the Word to HTML Converter</h1>
-        <button class="btn-english" onclick="window.location.href='english.html'">English</button>
-        <button class="btn-french" onclick="window.location.href='french.html'">French</button>
+        <!-- The content will be dynamically injected after successful login -->
     </div>
 
     <script>
@@ -38,6 +36,13 @@
                 // Hide the login form and display the content
                 document.getElementById("loginForm").style.display = "none";
                 document.getElementById("content").style.display = "block";
+
+                // Dynamically inject the content into the "content" div
+                document.getElementById("content").innerHTML = `
+                    <h1>Welcome to the Word to HTML Converter</h1>
+                    <button class="btn-english" onclick="window.location.href='english.html'">English</button>
+                    <button class="btn-french" onclick="window.location.href='french.html'">French</button>
+                `;
             } else {
                 // Show error message
                 document.getElementById("error-message").style.display = "block";
