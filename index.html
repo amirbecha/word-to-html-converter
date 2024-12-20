@@ -1,53 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word to HTML Converter</title>
-    <!-- Link to the external CSS file -->
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word to HTML Converter</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: 20px auto; }
+    .container { text-align: center; }
+    #output { margin-top: 20px; padding: 10px; border: 1px solid #ddd; background-color: #f9f9f9; }
+    button { margin-top: 10px; }
+    .code-container { display: flex; white-space: pre; font-family: monospace; }
+    .line-numbers { display: inline-block; width: 40px; padding-right: 10px; text-align: right; color: #888; user-select: none; border-right: 1px solid #ddd; }
+    .code { flex-grow: 1; padding-left: 10px; overflow-x: auto; }
+  </style>
 </head>
 <body>
-
-    <!-- Login Form -->
-    <div id="loginForm">
-        <h1>Login to Access the Word to HTML Converter</h1>
-        <input type="text" id="username" placeholder="Username" required /><br />
-        <input type="password" id="password" placeholder="Password" required /><br />
-        <button onclick="checkCredentials()">Login</button>
-        <p id="error-message" style="color: red; display: none;">Incorrect username or password. Please try again.</p>
-    </div>
-
-    <!-- Main content (hidden until login) -->
-    <div id="content" style="display: none;">
-        <!-- The content will be dynamically injected after successful login -->
-    </div>
-
-    <script>
-        // Define the correct username and password
-        const correctUsername = "admin";
-        const correctPassword = "password123";
-
-        function checkCredentials() {
-            const username = document.getElementById("username").value;
-            const password = document.getElementById("password").value;
-
-            if (username === correctUsername && password === correctPassword) {
-                // Hide the login form and display the content
-                document.getElementById("loginForm").style.display = "none";
-                document.getElementById("content").style.display = "block";
-
-                // Dynamically inject the content into the "content" div
-                document.getElementById("content").innerHTML = `
-                    <h1>Welcome to the Word to HTML Converter</h1>
-                    <button class="btn-english" onclick="window.location.href='english.html'">English</button>
-                    <button class="btn-french" onclick="window.location.href='french.html'">French</button>
-                `;
-            } else {
-                // Show error message
-                document.getElementById("error-message").style.display = "block";
-            }
-        }
-    </script>
+  <div class="container">
+    <h1>Word to HTML Converter</h1>
+    <input type="file" id="upload" accept=".docx" />
+    <button onclick="convertToHTML()">Convert to HTML</button>
+    <div id="output"></div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
