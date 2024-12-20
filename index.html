@@ -4,49 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Word to HTML Converter</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
-            background-color: #f4f4f4; /* Light gray background */
-            color: #333; /* Dark text color */
-        }
-        h1 {
-            color: #2c3e50; /* Dark blue heading */
-        }
-        button {
-            margin: 10px;
-            padding: 15px 30px;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px; /* Rounded corners */
-            transition: background-color 0.3s, transform 0.2s; /* Smooth transition for hover effects */
-        }
-        .btn-english {
-            background-color: #3498db; /* Blue button */
-            color: white;
-        }
-        .btn-french {
-            background-color: #3498db; /* Blue button */
-            color: white;
-        }
-        button:hover {
-            transform: scale(1.05); /* Slightly enlarge button on hover */
-        }
-        .btn-english:hover {
-            background-color: #2980b9; /* Darker blue on hover */
-        }
-        .btn-french:hover {
-            background-color: #2980b9; /* Darker blue on hover */
-        }
-    </style>
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Welcome to the Word to HTML Converter</h1>
-    <button class="btn-english" onclick="window.location.href='english.html'">English</button>
-    <button class="btn-french" onclick="window.location.href='french.html'">French</button>
+
+    <!-- Login Form -->
+    <div id="loginForm">
+        <h1>Login to Access the Word to HTML Converter</h1>
+        <input type="text" id="username" placeholder="Username" required /><br />
+        <input type="password" id="password" placeholder="Password" required /><br />
+        <button onclick="checkCredentials()">Login</button>
+        <p id="error-message" style="color: red; display: none;">Incorrect username or password. Please try again.</p>
+    </div>
+
+    <!-- Main content (hidden until login) -->
+    <div id="content">
+        <h1>Welcome to the Word to HTML Converter</h1>
+        <button class="btn-english" onclick="window.location.href='english.html'">English</button>
+        <button class="btn-french" onclick="window.location.href='french.html'">French</button>
+    </div>
+
+    <script>
+        // Define the correct username and password
+        const correctUsername = "admin";
+        const correctPassword = "password123";
+
+        function checkCredentials() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            if (username === correctUsername && password === correctPassword) {
+                // Hide the login form and display the content
+                document.getElementById("loginForm").style.display = "none";
+                document.getElementById("content").style.display = "block";
+            } else {
+                // Show error message
+                document.getElementById("error-message").style.display = "block";
+            }
+        }
+    </script>
 </body>
 </html>
-<------->
