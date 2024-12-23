@@ -214,6 +214,10 @@ summary {
     z-index: 10;
 }
 
+.second-btn::after {
+    content: "Click on Add abbrviations manually to manually add abbrviations.";
+}
+
 /* Show tooltip on hover */
 .info-btn:hover::after {
     display: block;
