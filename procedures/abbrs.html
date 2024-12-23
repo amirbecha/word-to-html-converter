@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Abbreviations</title>
-    <link rel="stylesheet" href="../styles.css"> <!-- Adjusted path for CSS -->
+    <link rel="stylesheet" href="../styles.css"> <!-- Adjusted path for global styles -->
+    <link rel="stylesheet" href="procedures.css"> <!-- New CSS for Add Abbreviations page -->
 </head>
 <body>
     <nav>
@@ -13,7 +14,7 @@
             <li class="has-submenu">
                 <a href="procedures.html">Procedures</a>
                 <ul class="submenu-procedures">
-                    <li><a href="#">Add abbreviations</a></li>
+                    <li><a href="#">Add Abbreviations</a></li>
                     <li><a href="procedure2.html">Procedure 2</a></li>
                     <li><a href="procedure3.html">Procedure 3</a></li>
                 </ul>
@@ -22,10 +23,52 @@
             <li><a href="english.html">English</a></li>
         </ul>
     </nav>
+
     <div class="container">
         <button class="return-btn" onclick="window.history.back()">Back</button>
         <h1>Add Abbreviations</h1>
-        <p>Welcome to the Add Abbreviations page. Add your content here for managing abbreviations.</p>
+
+        <!-- Input fields and Add button -->
+        <div class="input-container">
+            <input type="text" id="abbr" placeholder="Enter abbreviation" />
+            <input type="text" id="desc" placeholder="Enter description" />
+            <button class="add-btn" onclick="addAbbreviation()">Add</button>
+        </div>
+
+        <!-- List of added abbreviations -->
+        <div class="abbreviation-list" id="abbreviationList"></div>
     </div>
+
+    <script>
+        function addAbbreviation() {
+            // Get the values from the input fields
+            const abbr = document.getElementById('abbr').value.trim();
+            const desc = document.getElementById('desc').value.trim();
+
+            // Check if both fields are filled
+            if (abbr && desc) {
+                // Create a new abbreviation item
+                const abbreviationItem = document.createElement('div');
+                abbreviationItem.className = 'abbreviation-item';
+
+                // Create the abbreviation element and add the title for the description
+                const abbreviationElement = document.createElement('abbr');
+                abbreviationElement.title = desc;
+                abbreviationElement.textContent = abbr;
+
+                // Add the abbreviation to the item
+                abbreviationItem.appendChild(abbreviationElement);
+
+                // Append the new abbreviation item to the list
+                document.getElementById('abbreviationList').appendChild(abbreviationItem);
+
+                // Clear the input fields for the next entry
+                document.getElementById('abbr').value = '';
+                document.getElementById('desc').value = '';
+            } else {
+                alert("Please fill in both fields.");
+            }
+        }
+    </script>
 </body>
 </html>
