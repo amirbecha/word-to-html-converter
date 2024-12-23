@@ -82,6 +82,7 @@ button {
     background-color: #3498db; /* Same background as the main menu */
     display: none; /* Initially hide the submenu */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for better visibility */
+    z-index: 10; /* Ensure submenu appears above other content */
 }
 .submenu-procedures li {
     display: block; /* Display items in a column */
