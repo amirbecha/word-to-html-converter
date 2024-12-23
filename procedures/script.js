@@ -64,10 +64,19 @@ function submitText() {
     const text = document.getElementById('largeText').value.trim();
     let modifiedText = text;
 
-    // Loop through the abbreviations array and replace text with <abbr> tags
+    // Loop through the abbreviations array and replace or update <abbr> tags
     abbreviations.forEach(item => {
-        const regex = new RegExp(`\\b${item.abbr}\\b`, 'g'); // Match whole words (case-sensitive)
-        modifiedText = modifiedText.replace(regex, `<abbr title="${item.desc}">${item.abbr}</abbr>`);
+        const regex = new RegExp(`(<abbr[^>]*>\\s*${item.abbr}\\s*</abbr>)|\\b${item.abbr}\\b`, 'g'); // Match <abbr> tags and whole words
+        modifiedText = modifiedText.replace(regex, (match, abbrTag) => {
+            if (abbrTag) {
+                // If it's an <abbr> tag, update the title attribute
+                const newAbbrTag = abbrTag.replace(/title="[^"]*"/, `title="${item.desc}"`);
+                return newAbbrTag; // Return the modified <abbr> tag
+            } else {
+                // If it's a standalone abbreviation, replace with new <abbr> tag
+                return `<abbr title="${item.desc}">${item.abbr}</abbr>`;
+            }
+        });
     });
 
     // Display the modified text in the new textarea
