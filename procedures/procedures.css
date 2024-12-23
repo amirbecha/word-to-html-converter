@@ -143,12 +143,14 @@
     margin-bottom: 15px;
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* Create two equal columns */
-    gap: 6px; /* Space between items */
+    gap: 15px; /* Space between items */
+    width: 100%; /* Ensure the container takes full width */
 }
 
 /* Ensure that the details section works as expected */
 details {
     margin: 15px 0; /* Space between sections */
+    width: 100%; /* Ensure the details section takes full width */
 }
 
 /* Styling for the summary (title) of the details section */
@@ -185,6 +187,7 @@ summary:hover {
     padding-left: 25px; /* Space between checkbox and text */
     cursor: pointer;
     position: relative;
+    width: 100%; /* Ensure the label takes full width inside the grid */
 }
 
 /* Adjust the space between the checkbox and the label text */
