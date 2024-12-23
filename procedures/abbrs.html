@@ -37,21 +37,21 @@
 
         <!-- List of added abbreviations -->
         <div class="abbreviation-list" id="abbreviationList"></div>
-    </div>
 
-    <!-- New large text box -->
-    <div class="textarea-container">
-        <textarea id="largeText" placeholder="Enter your code here..." rows="4"></textarea>
-    </div>
+        <!-- New large text box -->
+        <div class="textarea-container">
+            <textarea id="largeText" placeholder="Enter your code here..." rows="4" oninput="checkSubmitButton()"></textarea>
+        </div>
 
-    <!-- Submit button -->
-    <div class="submit-container">
-        <button class="submit-btn" onclick="submitText()">Submit</button>
-    </div>
+        <!-- Submit button -->
+        <div class="submit-container">
+            <button class="submit-btn" id="submitBtn" onclick="submitText()" disabled>Submit</button>
+        </div>
 
-    <!-- Display modified text in a new text area -->
-    <div class="modified-text-container">
-        <textarea id="modifiedText" placeholder="Modified text will appear here..." rows="4" readonly></textarea>
+        <!-- Display modified text in a new text area -->
+        <div class="modified-text-container">
+            <textarea id="modifiedText" placeholder="Modified text will appear here..." rows="4" readonly></textarea>
+        </div>
     </div>
 
     <!-- Include the external JavaScript file -->
