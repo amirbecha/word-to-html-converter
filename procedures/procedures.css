@@ -136,73 +136,32 @@
 
 /* Styling for the Suggestion List */
 #suggestionsList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Create two equal-width columns */
+    gap: 15px; /* Space between items */
     padding: 15px;
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 15px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Create two equal columns */
-    gap: 15px; /* Space between items */
-    width: 100%; /* Ensure the container takes full width */
-    box-sizing: border-box; /* Include padding in width calculations */
 }
 
-/* Ensure that the details section works as expected */
-details {
-    margin: 15px 0; /* Space between sections */
-    width: 100%; /* Ensure the details section takes full width */
-}
-
-/* Styling for the summary (title) of the details section */
-summary {
-    display: flex;
-    align-items: center; /* Vertically center the arrow and text */
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    padding: 10px;
-    background-color: #3498db;
-    color: white;
-    border-radius: 8px;
-    width: 100%;
-    text-align: center;
-    list-style: none; /* Remove default list-style */
-    transition: background-color 0.3s ease;
-}
-
-summary h2 {
-    margin: 0;
-    padding-left: 10px; /* Space between the arrow and the text */
-}
-
-summary:hover {
-    background-color: #2980b9;
-}
-
-/* Styling for checkbox labels */
+/* Styling for each label */
 #suggestionsList label {
-    display: flex; /* Use flexbox to align checkboxes and text */
-    align-items: center; /* Vertically align text and checkbox */
+    display: flex;
+    align-items: center; /* Vertically align the checkbox and text */
     font-size: 16px;
-    padding-left: 25px; /* Space between checkbox and text */
+    padding-left: 25px; /* Add space between checkbox and label text */
     cursor: pointer;
-    position: relative;
-    width: 100%; /* Ensure the label takes full width inside the grid */
 }
 
-/* Adjust the space between the checkbox and the label text */
+/* Styling for checkbox */
 #suggestionsList input[type="checkbox"] {
-    position: absolute;
-    left: 0;
-    top: 0;
-    margin: 0; /* Remove default margin */
-    cursor: pointer;
-    width: 18px; /* Ensure the checkbox is visible */
-    height: 18px; /* Ensure the checkbox is visible */
+    margin-right: 10px; /* Space between checkbox and label text */
+    width: 18px; /* Ensure checkboxes are visible */
+    height: 18px; /* Ensure checkboxes are visible */
 }
 
-/* Add hover effect for the labels */
+/* Add hover effect for labels */
 #suggestionsList label:hover {
     background-color: #ecf0f1;
     border-radius: 4px;
