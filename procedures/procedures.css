@@ -176,10 +176,10 @@ summary {
 .info-btn {
     background-color: red;
     color: white;
-    font-size: 16px;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
+    font-size: 18px; /* Adjust font size to fit inside the circle */
+    width: 30px; /* Width of the circle */
+    height: 30px; /* Height of the circle */
+    border-radius: 50%; /* Makes the button a perfect circle */
     border: none;
     display: flex;
     align-items: center;
