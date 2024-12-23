@@ -1,3 +1,4 @@
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
     max-width: 75%;
@@ -45,15 +46,63 @@ button {
     margin-right: 8px; /* Space between arrow and text */
     font-size: 18px; /* Arrow size */
 }
+
+/* Menu Bar */
+.menu-bar {
+    list-style-type: none; /* Remove bullet points */
+    padding: 10px 20px; /* Padding for the menu */
+    margin: 0; /* Remove default margin */
+    background-color: #3498db; /* Menu background color */
+    display: flex; /* Align items in a row */
+    position: relative;
 }
-.button, .file-upload-btn {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s, transform 0.2s;
+.menu-bar li {
+    display: inline; /* Display items inline */
+    position: relative; /* For submenu positioning */
 }
+.menu-bar a {
+    text-decoration: none; /* Remove underline from links */
+    color: white; /* Link text color */
+    padding: 10px; /* Padding around links */
+    transition: background-color 0.3s; /* Smooth transition for hover effects */
+}
+.menu-bar a:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+    border-radius: 5px; /* Rounded corners on hover */
+}
+
+/* Submenu-Procedures */
+.submenu-procedures {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+    position: absolute; /* Position the submenu relative to the parent */
+    top: 100%; /* Position below the parent menu item */
+    left: 0; /* Align submenu with the parent */
+    background-color: #3498db; /* Same background as the main menu */
+    display: none; /* Initially hide the submenu */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for better visibility */
+}
+.submenu-procedures li {
+    display: block; /* Display items in a column */
+}
+.submenu-procedures a {
+    display: block; /* Make the links block-level */
+    padding: 10px; /* Add padding around the links */
+    color: white; /* White text color */
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.3s; /* Smooth hover effect */
+}
+.submenu-procedures a:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+}
+
+/* Show submenu on hover */
+.has-submenu:hover .submenu-procedures {
+    display: block; /* Show submenu */
+}
+
+/* File Upload Button */
 .file-upload-btn {
     position: relative;
     overflow: hidden;
@@ -71,52 +120,4 @@ button {
     height: 100%;
     opacity: 0;
     cursor: pointer;
-}
-.convert-btn {
-    background-color: #3498db; /* Blue button */
-    color: white;
-}
-.convert-btn:hover {
-    background-color: #2980b9; /* Darker blue on hover */
-    transform: scale(1.05); /* Slightly enlarge button on hover */
-}
-.code-container {
-    display: flex; /* Use flexbox to align line numbers and code */
-    white-space: pre; /* Maintain whitespace */
-    font-family: monospace; /* Use a monospaced font for code */
-}
-.line-numbers {
-    display: inline-block;
-    width: 40px; /* Fixed width for line numbers */
-    padding-right: 10px; /* Space between line numbers and code */
-    text-align: right; /* Right align numbers */
-    color: #888; /* Light color for line numbers */
-    user-select: none; /* Prevent selection of line numbers */
-    border-right: 1px solid #ddd; /* Optional: border between numbers and code */
-}
-.code { /* Code styles */
-    flex-grow: 1; /* Take up the remaining space */
-    padding-left: 10px; /* Space between numbers and code */
-    overflow-x: auto; /* Enable horizontal scrolling */
-}
-.menu-bar {
-    list-style-type: none; /* Remove bullet points */
-    padding: 10px 20px; /* Padding for the menu */
-    margin: 0; /* Remove default margin */
-    background-color: #3498db; /* Menu background color */
-    display: flex; /* Align items in a row */
-    position: relative;
-}
-.menu-bar li {
-    display: inline; /* Display items inline */
-}
-.menu-bar a {
-    text-decoration: none; /* Remove underline from links */
-    color: white; /* Link text color */
-    padding: 10px; /* Padding around links */
-    transition: background-color 0.3s; /* Smooth transition for hover effects */
-}
-.menu-bar a:hover {
-    background-color: #2980b9; /* Darker blue on hover */
-    border-radius: 5px; /* Rounded corners on hover */
 }
