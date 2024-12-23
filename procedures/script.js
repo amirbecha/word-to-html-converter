@@ -66,7 +66,9 @@ function submitText() {
 
     // Loop through the abbreviations array and replace or update <abbr> tags
     abbreviations.forEach(item => {
-        const regex = new RegExp(`(<abbr[^>]*>\\s*${item.abbr}\\s*</abbr>)|\\b${item.abbr}\\b`, 'g'); // Match <abbr> tags and whole words
+        // Regex: Match abbreviations, but ignore those inside parentheses
+        const regex = new RegExp(`(<abbr[^>]*>\\s*${item.abbr}\\s*</abbr>)|(?<!\\([^)]+)\\b${item.abbr}\\b(?![^()]*\\))`, 'g'); 
+
         modifiedText = modifiedText.replace(regex, (match, abbrTag) => {
             if (abbrTag) {
                 // If it's an <abbr> tag, update the title attribute
