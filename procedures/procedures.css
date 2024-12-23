@@ -82,6 +82,7 @@
 .delete-btn:hover {
     background-color: #c0392b; /* Darker red */
 }
+
 /* Styling for the new large text area */
 .textarea-container {
     margin-top: 20px;
@@ -96,6 +97,7 @@
     border: 1px solid #ccc;
     resize: none; /* Allows the user to resize the text area vertically */
 }
+
 /* Styling for the submit button */
 .submit-container {
     margin-top: 20px;
@@ -131,6 +133,7 @@
     border: 1px solid #ccc;
     resize: none; /* Prevent resizing */
 }
+
 /* General Styling for Suggestion Section */
 #suggestionsList {
     padding: 15px;
@@ -161,7 +164,7 @@ summary {
     text-align: center;
     transition: background-color 0.3s ease;
     width: 100%;
-    list-style: disc; /* Re-enable the default arrow style */
+    /* Remove list-style to avoid conflicts with the default arrow */
 }
 
 /* Styling for the h3 inside the summary */
