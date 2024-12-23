@@ -148,6 +148,7 @@ details {
     margin: 15px 0; /* Space between sections */
 }
 
+/* Styling for the summary (title) of the details section */
 summary {
     display: flex;
     align-items: center; /* Vertically center the arrow and text */
@@ -178,13 +179,13 @@ summary:hover {
     display: flex; /* Use flexbox to align checkboxes and text */
     align-items: center; /* Vertically align text and checkbox */
     font-size: 16px;
-    margin: 8px 0;
+    margin-bottom: 6px; /* Increase margin between lines */
     padding-left: 25px; /* Space between checkbox and text */
     cursor: pointer;
     position: relative;
 }
 
-/* Style the checkboxes */
+/* Adjust the space between the checkbox and the label text */
 #suggestionsList input[type="checkbox"] {
     position: absolute;
     left: 0;
@@ -199,55 +200,4 @@ summary:hover {
 #suggestionsList label:hover {
     background-color: #ecf0f1;
     border-radius: 4px;
-}
-
-/* Styling for the Add Abbreviation Section */
-.input-container {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-    padding: 15px;
-    background-color: #f4f4f4;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.input-container input {
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    width: 100%;
-}
-
-#abbr {
-    width: 25%;
-}
-
-#desc {
-    width: 60%;
-}
-
-.add-btn {
-    padding: 10px 20px;
-    background-color: #3498db;
-    color: white;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.add-btn:hover {
-    background-color: #2980b9;
-}
-
-/* Remove default margin for details tags when collapsed */
-details[open] summary {
-    border-radius: 8px 8px 0 0; /* Round only top corners when expanded */
-}
-
-details:not([open]) summary {
-    border-radius: 8px; /* Keep rounded corners when collapsed */
 }
