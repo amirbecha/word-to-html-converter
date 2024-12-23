@@ -147,8 +147,10 @@ details {
     margin: 10px 0;
 }
 
-/* Summary Style (The clickable part of the details element) */
+/* Align the arrow (summary) and h3 on the same line */
 summary {
+    display: flex;
+    align-items: center; /* Vertically center the arrow and text */
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
@@ -158,8 +160,16 @@ summary {
     border-radius: 8px;
     text-align: center;
     transition: background-color 0.3s ease;
+    width: 100%;
 }
 
+/* Styling for the h3 inside the summary */
+summary h3 {
+    margin: 0;
+    padding-left: 10px; /* Space between the arrow and the title */
+}
+
+/* Hover effect for the summary */
 summary:hover {
     background-color: #2980b9;
 }
