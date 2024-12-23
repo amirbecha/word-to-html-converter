@@ -1,84 +1,56 @@
-/* procedures.css */
+/* Styling for the Add Abbreviations page (procedures.css) */
 
-/* General container styling */
-.container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* Styling for the navigation menu */
-nav {
-    background-color: #333;
-    padding: 10px 0;
-}
-
-.menu-bar {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-}
-
-.menu-bar li {
-    display: inline;
-    margin: 0 15px;
-}
-
-.menu-bar li a {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-}
-
-/* Styling for the input fields and Add button */
+/* Align the input fields and button in a row */
 .input-container {
     display: flex;
-    justify-content: space-between;
+    gap: 10px;
     margin-bottom: 20px;
 }
 
+/* Apply the existing input style */
 .input-container input {
-    width: 48%;
     padding: 10px;
-    font-size: 14px;
+    font-size: 16px;
+    border-radius: 5px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    width: 100%;
 }
 
-.input-container .add-btn {
-    width: 48%;
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #4CAF50; /* Green background */
+/* Button styling for the 'Add' button */
+.add-btn {
+    padding: 10px 20px;
+    background-color: #3498db;
     color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
-.input-container .add-btn:hover {
-    background-color: #45a049; /* Darker green */
+.add-btn:hover {
+    background-color: #2980b9;
 }
 
-/* Styling for the abbreviation list */
+/* Styling for the abbreviation list container */
 .abbreviation-list {
     margin-top: 20px;
 }
 
-/* Styling for each abbreviation item */
+/* Styling for each abbreviation entry */
 .abbreviation-item {
-    display: flex;
-    align-items: center;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
     margin-bottom: 10px;
-    position: relative;
+    border-radius: 5px;
+    position: relative; /* To position the delete button */
 }
 
-/* Styling for the abbreviation text */
+/* Styling for the abbreviation element */
 .abbreviation-item abbr {
-    font-size: 16px;
-    margin-right: 10px;
+    font-weight: bold;
+    cursor: help; /* Add a tooltip cursor */
 }
 
 /* Styling for the delete button */
@@ -104,23 +76,4 @@ nav {
 /* Hover effect for the delete button */
 .delete-btn:hover {
     background-color: #c0392b; /* Darker red */
-}
-
-/* Styling for the Back button */
-.return-btn {
-    background-color: #f44336; /* Red background */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 4px;
-    text-decoration: none;
-    display: inline-block;
-    margin-bottom: 20px;
-    transition: background-color 0.3s;
-}
-
-.return-btn:hover {
-    background-color: #d32f2f; /* Darker red */
 }
