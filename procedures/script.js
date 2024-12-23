@@ -66,8 +66,8 @@ function submitText() {
 
     // Loop through the abbreviations array and replace or update <abbr> tags
     abbreviations.forEach(item => {
-        // Regex: Match abbreviations, but ignore those inside parentheses
-        const regex = new RegExp(`(<abbr[^>]*>\\s*${item.abbr}\\s*</abbr>)|(?<!\\([^)]+)\\b${item.abbr}\\b(?![^()]*\\))`, 'g'); 
+        // Regex: Match abbreviations, allowing for an optional 's' at the end, and ignoring those inside parentheses
+        const regex = new RegExp(`(<abbr[^>]*>\\s*${item.abbr}\\s*</abbr>)|(?<!\\([^)]+)\\b${item.abbr}s?\\b(?![^()]*\\))`, 'g'); 
 
         modifiedText = modifiedText.replace(regex, (match, abbrTag) => {
             if (abbrTag) {
@@ -75,8 +75,12 @@ function submitText() {
                 const newAbbrTag = abbrTag.replace(/title="[^"]*"/, `title="${item.desc}"`);
                 return newAbbrTag; // Return the modified <abbr> tag
             } else {
-                // If it's a standalone abbreviation, replace with new <abbr> tag
-                return `<abbr title="${item.desc}">${item.abbr}</abbr>`;
+                // If it's a standalone abbreviation (with or without 's'), replace with new <abbr> tag
+                if (match.endsWith("s")) {
+                    return `<abbr title="${item.desc}">${item.abbr}</abbr>s`;
+                } else {
+                    return `<abbr title="${item.desc}">${item.abbr}</abbr>`;
+                }
             }
         });
     });
