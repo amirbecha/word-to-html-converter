@@ -152,6 +152,7 @@
 details {
     margin: 15px 0; /* Space between sections */
     width: 100%; /* Ensure the details section takes full width */
+    display: block; /* Force details to behave as block-level element */
 }
 
 /* Styling for the summary (title) of the details section */
