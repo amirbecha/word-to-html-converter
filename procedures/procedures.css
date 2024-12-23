@@ -187,6 +187,9 @@ summary {
     cursor: pointer;
     position: relative;
     transition: background-color 0.3s ease;
+    line-height: 1; /* Ensure the question mark stays centered */
+    padding: 0; /* Remove any extra padding that may cause stretching */
+    text-align: center; /* Ensure the content is centered */
 }
 
 .info-btn:hover {
