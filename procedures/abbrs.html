@@ -28,17 +28,9 @@
         <button class="return-btn" onclick="window.history.back()">Back</button>
         <h1>Add Abbreviations</h1>
 
-        <!-- Input fields and Add button -->
-        <div class="input-container">
-            <input type="text" id="abbr" size="10" maxlength="10" placeholder="Enter abbreviation" />
-            <input type="text" id="desc" placeholder="Enter description" />
-            <button class="add-btn" onclick="addAbbreviation()">Add</button>
-        </div>
-
         <!-- Suggestion List -->
         <div>
-            <details>
-            <summary><h3>Suggested Abbreviations</h3></summary>
+            <h2>Suggested Abbreviations</h2>
                 <div id="suggestionsList">
                 <!-- Example of a suggestion -->
                     <label><input type="checkbox" value="CA" onclick="toggleAbbreviation(this)"> CA - Compensation Advisor</label><br>
@@ -46,9 +38,17 @@
                     <label><input type="checkbox" value="MGR" onclick="toggleAbbreviation(this)"> MGR - Manager</label><br>
                 <!-- Add more suggestions as needed -->
                 </div>
-            </details>
         </div>
 
+        <!-- Input fields and Add button -->
+        <details>
+            <summary><h2>Add abbrviations manually</h2></summary>
+            <div class="input-container">
+                <input type="text" id="abbr" size="10" maxlength="10" placeholder="Enter abbreviation" />
+                <input type="text" id="desc" placeholder="Enter description" />
+                <button class="add-btn" onclick="addAbbreviation()">Add</button>
+            </div>
+        </details>
         <!-- List of added abbreviations -->
         <div class="abbreviation-list" id="abbreviationList"></div>
 
