@@ -1,8 +1,73 @@
 /* procedures.css */
 
-/* Existing styles */
+/* General container styling */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
 
-/* Style for the abbreviation item */
+/* Styling for the navigation menu */
+nav {
+    background-color: #333;
+    padding: 10px 0;
+}
+
+.menu-bar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.menu-bar li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.menu-bar li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+/* Styling for the input fields and Add button */
+.input-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.input-container input {
+    width: 48%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.input-container .add-btn {
+    width: 48%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #4CAF50; /* Green background */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.input-container .add-btn:hover {
+    background-color: #45a049; /* Darker green */
+}
+
+/* Styling for the abbreviation list */
+.abbreviation-list {
+    margin-top: 20px;
+}
+
+/* Styling for each abbreviation item */
 .abbreviation-item {
     display: flex;
     align-items: center;
@@ -10,13 +75,13 @@
     position: relative;
 }
 
-/* Style for the abbreviation text */
+/* Styling for the abbreviation text */
 .abbreviation-item abbr {
     font-size: 16px;
     margin-right: 10px;
 }
 
-/* Style for the delete button */
+/* Styling for the delete button */
 .delete-btn {
     background-color: #e74c3c; /* Red background */
     color: white;
@@ -39,4 +104,23 @@
 /* Hover effect for the delete button */
 .delete-btn:hover {
     background-color: #c0392b; /* Darker red */
+}
+
+/* Styling for the Back button */
+.return-btn {
+    background-color: #f44336; /* Red background */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 20px;
+    transition: background-color 0.3s;
+}
+
+.return-btn:hover {
+    background-color: #d32f2f; /* Darker red */
 }
