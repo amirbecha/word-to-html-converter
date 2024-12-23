@@ -134,7 +134,7 @@
     resize: none; /* Prevent resizing */
 }
 
-/* General Styling for Suggestion Section */
+/* Styling for the Suggestion List */
 #suggestionsList {
     padding: 15px;
     background-color: #f9f9f9;
@@ -143,14 +143,10 @@
     margin-bottom: 15px;
 }
 
-/* Styling the Details Element */
 details {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin: 10px 0;
+    margin: 15px 0; /* Add margin to create space between sections */
 }
 
-/* Ensure the default arrow is visible and align it with h3 */
 summary {
     display: flex;
     align-items: center; /* Vertically center the arrow and text */
@@ -161,54 +157,91 @@ summary {
     background-color: #3498db;
     color: white;
     border-radius: 8px;
-    text-align: center;
-    transition: background-color 0.3s ease;
     width: 100%;
-    /* Remove list-style to avoid conflicts with the default arrow */
+    text-align: center;
+    list-style: none; /* Remove default list-style */
+    transition: background-color 0.3s ease;
 }
 
-/* Styling for the h3 inside the summary */
-summary h3 {
+summary h2 {
     margin: 0;
-    padding-left: 10px; /* Space between the arrow and the title */
+    padding-left: 10px; /* Space between the arrow and the text */
 }
 
-/* Hover effect for the summary */
 summary:hover {
     background-color: #2980b9;
 }
 
-/* Styling Checkbox Labels */
-label {
+/* Style the checkbox labels */
+#suggestionsList label {
     display: block;
     font-size: 16px;
-    margin-bottom: 8px;
-    padding-left: 25px; /* To create space between checkbox and text */
-    position: relative;
+    margin: 8px 0;
+    padding-left: 25px; /* Space between checkbox and text */
     cursor: pointer;
 }
 
-/* Style the Checkboxes */
-input[type="checkbox"] {
+/* Style the checkboxes */
+#suggestionsList input[type="checkbox"] {
     position: absolute;
     left: 0;
     top: 0;
     cursor: pointer;
 }
 
-/* Style for when the checkbox is checked */
-input[type="checkbox"]:checked + label {
-    font-weight: bold;
-    color: #2ecc71; /* Change text color when checked */
-}
-
-/* Hover effect on checkboxes */
-label:hover {
+/* Add hover effect for the labels */
+#suggestionsList label:hover {
     background-color: #ecf0f1;
     border-radius: 4px;
 }
 
-/* Optional: Add some space between items */
-#suggestionsList label {
-    margin-bottom: 10px;
+/* Styling for the Add Abbreviation Section */
+.input-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.input-container input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+#abbr {
+    width: 25%;
+}
+
+#desc {
+    width: 60%;
+}
+
+.add-btn {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-btn:hover {
+    background-color: #2980b9;
+}
+
+/* Remove default margin for details tags when collapsed */
+details[open] summary {
+    border-radius: 8px 8px 0 0; /* Round only top corners when expanded */
+}
+
+details:not([open]) summary {
+    border-radius: 8px; /* Keep rounded corners when collapsed */
 }
