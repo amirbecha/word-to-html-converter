@@ -1,53 +1,42 @@
-/* Styling for the Add Abbreviations page (procedures.css) */
+/* procedures.css */
 
-/* Align the input fields and button in a row */
-.input-container {
+/* Existing styles */
+
+/* Style for the abbreviation item */
+.abbreviation-item {
     display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative;
 }
 
-/* Apply the existing input style */
-.input-container input {
-    padding: 10px;
+/* Style for the abbreviation text */
+.abbreviation-item abbr {
     font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    width: 100%;
+    margin-right: 10px;
 }
 
-/* Button styling for the 'Add' button */
-.add-btn {
-    padding: 10px 20px;
-    background-color: #3498db;
+/* Style for the delete button */
+.delete-btn {
+    background-color: #e74c3c; /* Red background */
     color: white;
-    font-size: 16px;
     border: none;
-    border-radius: 5px;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
     transition: background-color 0.3s;
 }
 
-.add-btn:hover {
-    background-color: #2980b9;
-}
-
-/* Styling for the abbreviation list container */
-.abbreviation-list {
-    margin-top: 20px;
-}
-
-/* Styling for each abbreviation entry */
-.abbreviation-item {
-    background-color: #f9f9f9;
-    padding: 10px;
-    border: 1px solid #ddd;
-    margin-bottom: 10px;
-    border-radius: 5px;
-}
-
-/* Styling for the abbreviation element */
-.abbreviation-item abbr {
-    font-weight: bold;
-    cursor: help; /* Add a tooltip cursor */
+/* Hover effect for the delete button */
+.delete-btn:hover {
+    background-color: #c0392b; /* Darker red */
 }
