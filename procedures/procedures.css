@@ -145,6 +145,7 @@
     grid-template-columns: repeat(2, 1fr); /* Create two equal columns */
     gap: 15px; /* Space between items */
     width: 100%; /* Ensure the container takes full width */
+    box-sizing: border-box; /* Include padding in width calculations */
 }
 
 /* Ensure that the details section works as expected */
