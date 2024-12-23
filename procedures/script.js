@@ -24,6 +24,7 @@ function addAbbreviation() {
             abbreviationItem.remove();
             // Remove abbreviation from the list
             abbreviations = abbreviations.filter(item => item.abbr !== abbr);
+            checkSubmitButton(); // Recheck submit button status
         };
 
         // Append the abbreviation and delete button to the item
@@ -39,8 +40,23 @@ function addAbbreviation() {
         // Clear the input fields for the next entry
         document.getElementById('abbr').value = '';
         document.getElementById('desc').value = '';
+
+        // Recheck submit button status
+        checkSubmitButton();
     } else {
         alert("Please fill in both fields.");
+    }
+}
+
+function checkSubmitButton() {
+    const text = document.getElementById('largeText').value.trim();
+    const submitBtn = document.getElementById('submitBtn');
+    
+    // Enable the Submit button if there is at least one abbreviation and text in the textarea
+    if (abbreviations.length > 0 && text) {
+        submitBtn.disabled = false;
+    } else {
+        submitBtn.disabled = true;
     }
 }
 
