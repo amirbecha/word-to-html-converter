@@ -40,9 +40,19 @@
     </div>
 
     <!-- New large text box -->
-        <div class="textarea-container">
-            <textarea id="largeText" placeholder="Enter your code here..." rows="4"></textarea>
-        </div>
+    <div class="textarea-container">
+        <textarea id="largeText" placeholder="Enter your code here..." rows="4"></textarea>
+    </div>
+
+    <!-- Submit button -->
+    <div class="submit-container">
+        <button class="submit-btn" onclick="submitText()">Submit</button>
+    </div>
+
+    <!-- Display modified text in a new text area -->
+    <div class="modified-text-container">
+        <textarea id="modifiedText" placeholder="Modified text will appear here..." rows="4" readonly></textarea>
+    </div>
 
     <!-- Include the external JavaScript file -->
     <script src="script.js"></script>
