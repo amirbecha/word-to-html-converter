@@ -143,8 +143,9 @@
     margin-bottom: 15px;
 }
 
+/* Ensure that the details section works as expected */
 details {
-    margin: 15px 0; /* Add margin to create space between sections */
+    margin: 15px 0; /* Space between sections */
 }
 
 summary {
@@ -172,13 +173,15 @@ summary:hover {
     background-color: #2980b9;
 }
 
-/* Style the checkbox labels */
+/* Styling for checkbox labels */
 #suggestionsList label {
-    display: block;
+    display: flex; /* Use flexbox to align checkboxes and text */
+    align-items: center; /* Vertically align text and checkbox */
     font-size: 16px;
     margin: 8px 0;
     padding-left: 25px; /* Space between checkbox and text */
     cursor: pointer;
+    position: relative;
 }
 
 /* Style the checkboxes */
@@ -186,7 +189,10 @@ summary:hover {
     position: absolute;
     left: 0;
     top: 0;
+    margin: 0; /* Remove default margin */
     cursor: pointer;
+    width: 18px; /* Ensure the checkbox is visible */
+    height: 18px; /* Ensure the checkbox is visible */
 }
 
 /* Add hover effect for the labels */
