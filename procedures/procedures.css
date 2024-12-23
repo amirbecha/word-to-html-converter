@@ -178,13 +178,14 @@ summary:hover {
 
 /* Styling for checkbox labels */
 #suggestionsList label {
-    display: flex; /* Use flexbox to align checkboxes and text */
-    align-items: center; /* Vertically align text and checkbox */
+    display: flex;
+    align-items: center; /* Ensure checkbox and text are vertically aligned */
+    justify-content: flex-start; /* Align them to the start */
     font-size: 16px;
-    padding-left: 25px; /* Space between checkbox and text */
+    padding-left: 25px;
     cursor: pointer;
     position: relative;
-}
+    flex: 1; /* Allow labels to fill the available space */
 
 /* Adjust the space between the checkbox and the label text */
 #suggestionsList input[type="checkbox"] {
