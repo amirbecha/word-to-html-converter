@@ -1,0 +1,53 @@
+/* Styling for the Add Abbreviations page (procedures.css) */
+
+/* Align the input fields and button in a row */
+.input-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Apply the existing input style */
+.input-container input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+/* Button styling for the 'Add' button */
+.add-btn {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-btn:hover {
+    background-color: #2980b9;
+}
+
+/* Styling for the abbreviation list container */
+.abbreviation-list {
+    margin-top: 20px;
+}
+
+/* Styling for each abbreviation entry */
+.abbreviation-item {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+/* Styling for the abbreviation element */
+.abbreviation-item abbr {
+    font-weight: bold;
+    cursor: help; /* Add a tooltip cursor */
+}
