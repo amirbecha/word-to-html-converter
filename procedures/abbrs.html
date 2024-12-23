@@ -29,8 +29,9 @@
         <h1>Add Abbreviations</h1>
 
         <!-- Suggestion List -->
+        <details>
         <div>
-            <h2>Suggested Abbreviations</h2>
+            <summary><h2>Suggested Abbreviations</h2></summary>
                 <div id="suggestionsList">
                 <!-- Example of a suggestion -->
                     <label><input type="checkbox" value="CA" onclick="toggleAbbreviation(this)"> CA - Compensation Advisor</label><br>
@@ -39,16 +40,16 @@
                 <!-- Add more suggestions as needed -->
                 </div>
         </div>
-
+        </details>
         <!-- Input fields and Add button -->
-        <div class="input-container">
-            <details>
+        <details>
+            <div class="input-container">
                 <summary><h2>Add abbrviations manually</h2></summary>
                 <input type="text" id="abbr" size="10" maxlength="10" placeholder="Enter abbreviation" />
                 <input type="text" id="desc" placeholder="Enter description" />
                 <button class="add-btn" onclick="addAbbreviation()">Add</button>
-            </details>
-         </div>
+            </div>
+        </details>
         <!-- List of added abbreviations -->
         <div class="abbreviation-list" id="abbreviationList"></div>
 
