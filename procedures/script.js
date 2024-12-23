@@ -1,4 +1,4 @@
-// script.js
+let abbreviations = [];
 
 function addAbbreviation() {
     // Get the values from the input fields
@@ -22,6 +22,8 @@ function addAbbreviation() {
         deleteButton.innerHTML = 'X';
         deleteButton.onclick = function() {
             abbreviationItem.remove();
+            // Remove abbreviation from the list
+            abbreviations = abbreviations.filter(item => item.abbr !== abbr);
         };
 
         // Append the abbreviation and delete button to the item
@@ -31,10 +33,27 @@ function addAbbreviation() {
         // Append the new abbreviation item to the list
         document.getElementById('abbreviationList').appendChild(abbreviationItem);
 
+        // Add abbreviation to the abbreviation list array
+        abbreviations.push({ abbr, desc });
+
         // Clear the input fields for the next entry
         document.getElementById('abbr').value = '';
         document.getElementById('desc').value = '';
     } else {
         alert("Please fill in both fields.");
     }
+}
+
+function submitText() {
+    const text = document.getElementById('largeText').value.trim();
+    let modifiedText = text;
+
+    // Loop through the abbreviations array and replace text with <abbr> tags
+    abbreviations.forEach(item => {
+        const regex = new RegExp(`\\b${item.abbr}\\b`, 'g'); // Match whole words (case-sensitive)
+        modifiedText = modifiedText.replace(regex, `<abbr title="${item.desc}">${item.abbr}</abbr>`);
+    });
+
+    // Display the modified text in the new textarea
+    document.getElementById('modifiedText').value = modifiedText;
 }
