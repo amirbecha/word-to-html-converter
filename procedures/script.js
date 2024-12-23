@@ -123,3 +123,10 @@ function toggleAbbreviation(checkbox) {
 
     checkSubmitButton();
 }
+// Function to scroll to the bottom of the page
+function scrollToBottom() {
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'  // Smooth scrolling effect
+    });
+}
