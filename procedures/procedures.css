@@ -147,7 +147,7 @@ details {
     margin: 10px 0;
 }
 
-/* Align the arrow (summary) and h3 on the same line */
+/* Ensure the default arrow is visible and align it with h3 */
 summary {
     display: flex;
     align-items: center; /* Vertically center the arrow and text */
@@ -161,6 +161,7 @@ summary {
     text-align: center;
     transition: background-color 0.3s ease;
     width: 100%;
+    list-style: disc; /* Re-enable the default arrow style */
 }
 
 /* Styling for the h3 inside the summary */
