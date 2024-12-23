@@ -16,8 +16,17 @@ function addAbbreviation() {
         abbreviationElement.title = desc;
         abbreviationElement.textContent = abbr;
 
-        // Add the abbreviation to the item
+        // Create the delete button
+        const deleteButton = document.createElement('button');
+        deleteButton.className = 'delete-btn';
+        deleteButton.innerHTML = 'X';
+        deleteButton.onclick = function() {
+            abbreviationItem.remove();
+        };
+
+        // Append the abbreviation and delete button to the item
         abbreviationItem.appendChild(abbreviationElement);
+        abbreviationItem.appendChild(deleteButton);
 
         // Append the new abbreviation item to the list
         document.getElementById('abbreviationList').appendChild(abbreviationItem);
@@ -29,4 +38,3 @@ function addAbbreviation() {
         alert("Please fill in both fields.");
     }
 }
-
