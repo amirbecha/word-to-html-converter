@@ -198,7 +198,7 @@ summary {
 
 /* Tooltip text */
 .info-btn::after {
-    content: "Short description of the abbreviations list.";
+    content: "Click on Suggested Abbreviations to view abbreviations.";
     display: none;
     position: absolute;
     top: 35px;
