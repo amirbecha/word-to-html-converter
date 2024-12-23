@@ -142,8 +142,8 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 15px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Two equal columns */
-    gap: 20px; /* Space between grid items */
+    grid-template-columns: repeat(2, 1fr); /* Create two equal columns */
+    gap: 15px; /* Space between items */
     width: 100%; /* Ensure the container takes full width */
     box-sizing: border-box; /* Include padding in width calculations */
 }
@@ -169,15 +169,51 @@ summary {
     text-align: center;
     list-style: none; /* Remove default list-style */
     transition: background-color 0.3s ease;
+    justify-content: space-between; /* Space out the content */
 }
 
-summary h2 {
-    margin: 0;
-    padding-left: 10px; /* Space between the arrow and the text */
+/* Styling for the question mark button */
+.info-btn {
+    background-color: red;
+    color: white;
+    font-size: 16px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s ease;
 }
 
-summary:hover {
-    background-color: #2980b9;
+.info-btn:hover {
+    background-color: #e74c3c; /* Darker red on hover */
+}
+
+/* Tooltip text */
+.info-btn::after {
+    content: "Short description of the abbreviations list.";
+    display: none;
+    position: absolute;
+    top: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 200px;
+    text-align: center;
+    z-index: 10;
+}
+
+/* Show tooltip on hover */
+.info-btn:hover::after {
+    display: block;
 }
 
 /* Styling for checkbox labels */
