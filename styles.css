@@ -92,6 +92,7 @@ button {
     color: white; /* White text color */
     text-decoration: none; /* Remove underline */
     transition: background-color 0.3s; /* Smooth hover effect */
+    min-width: 200px; /* Minimum width for submenu */
 }
 .submenu-procedures a:hover {
     background-color: #2980b9; /* Darker blue on hover */
