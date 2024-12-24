@@ -69,6 +69,17 @@ function submitText() {
     });
 
     document.getElementById('modifiedText').value = modifiedText;
+
+    // Call the scrollToBottom function to scroll down after submission
+    scrollToBottom();
+}
+
+// Function to scroll to the bottom of the page
+function scrollToBottom() {
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'  // Smooth scrolling effect
+    });
 }
 
 function toggleAbbreviation(checkbox) {
@@ -122,11 +133,4 @@ function toggleAbbreviation(checkbox) {
     }
 
     checkSubmitButton();
-}
-// Function to scroll to the bottom of the page
-function scrollToBottom() {
-    window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: 'smooth'  // Smooth scrolling effect
-    });
 }
